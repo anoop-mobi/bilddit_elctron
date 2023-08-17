@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="form-wrapper">
+        
+
+        <form class="signIn" *ngIf="formName == 'login'">
+            <h1>Welcome!</h1>
+            <p class="lead">Sign In to continue</p>
+            <div class="form-field">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input #userEmailLogin type="email" matInput placeholder="Email" autocomplete="phone" value="" required="required">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input #passwordLogin [type]="passwordLoginType ? 'password': 'text'" matInput placeholder="Password" autocomplete="off" value="" required="required">
+                    <i matSuffix mat-icon-button aria-label="view password" (click)="toggleVisiblity()">
+                        <div class="btn eye-icon" [ngClass]="passwordLoginType ? '' : 'active'"></div>
+                    </i>
+                </mat-form-field>
+                <p class="forgot-password text-danger" *ngIf="loginError">Please Enter Email &amp; Password!</p>
+                <p class="small_info">{{logginMSG}}</p>
+                <button type="submit" class="btn btn-primary" mat-button color="primary" (click)="userLogin(userEmailLogin.value, passwordLogin.value)">Login</button>
+                <a routerLink="/forgot-password" class="forgot-password">Forget Password?</a>
+            </div>
+        </form>
+        <form class="forgot-password" *ngIf="formName === 'forgot-password'">
+            <img src="assets/images/forgot_password.svg" alt="forgot_password">
+            <p class="lead strong">Forgot Your Password?</p>
+            <p class="sub-lead strong">Enter your email address. You will receive an email with a link to reset your password</p>
+            
+            <div class="form-field">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input #resetPass type="email" matInput placeholder="Email">
+                </mat-form-field>
+                
+
+                <button class="btn btn-primary" mat-button color="primary" (click)="resetPassword(resetPass.value)">Request Reset Link</button>
+                <a routerLink="/login" class="forgot-password">Back To Login</a>
+            </div>
+        </form>
+        <!-- removed from the plan -->
+        <!-- <form class="change-password" *ngIf="formName === 'change-password'">
+            <img src="assets/images/forgot_password.svg" alt="forgot_password">
+            <p class="lead strong">Create New Password</p>
+            <p class="sub-lead strong">Secure your account with a strong password.</p>
+            
+            <div class="form-field">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput maxlength="16" placeholder="New Password" required="password" autocomplete="new-password">
+                    <i matSuffix mat-icon-button aria-label="view password">
+                        <div class="btn eye-icon active"></div>
+                    </i>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Confirm Password</mat-label>
+                    <input type="password" matInput maxlength="16" placeholder="Confirm New Password" required="password" autocomplete="confirm-new-password">
+                    <i matSuffix mat-icon-button aria-label="view password">
+                        <div class="btn eye-icon"></div>
+                    </i>
+                </mat-form-field>
+                
+
+                <button class="btn btn-primary" mat-button color="primary">CREATE NEW PASSWORD</button>
+            </div>
+        </form> -->
+    </div>
+</div>
+
+<!-- <div class="modal-wrap" *ngIf="modalStatus"> 
+
+    <div class="modal-main">
+        <div class="modal-header">
+            <button class="modal-close-btn" (click)="modalToggle()">
+                x
+            </button>
+        </div>
+        <div class="modal-content">
+            <div class="modal-graphic">
+                <img src="assets/images/success_iocn.svg">
+            </div>
+            
+            <div class="modal-text">
+               
+            </div>
+        </div>
+    </div>
+    <div class="modal_backdrop" (click)="modalToggle()"></div>
+</div> -->

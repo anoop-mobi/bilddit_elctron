@@ -1,0 +1,47 @@
+h1{
+    margin-bottom: 0;
+    font-weight: 500;
+}
+.container{
+    text-align: center;
+}
+
+.form-field{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    margin-top: 36px;
+}
+.form-wrapper{
+    max-width: 380px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    padding-top: 160px;
+}
+.btn-primary{
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.forgot-password{
+    font-size: 0.9375rem;
+}
+.strong{
+    font-weight: var(--font-weight--semibold);
+}
+.forgot-password {
+    .form-field{
+        margin-top: 50px;
+    }
+}
+
+.small_info{
+    font-size: 0.875rem;
+    opacity: .75;
+}
+
+@media screen and (max-width:767px){
+    .form-wrapper{
+        padding-top: 90px;
+        overflow: auto;
+    }
+}
