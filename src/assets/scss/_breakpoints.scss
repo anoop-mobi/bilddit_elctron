@@ -1,0 +1,53 @@
+// Responsive Breakpoints
+@mixin down-sm {
+    @media screen and (max-width: 600px) {
+        @content;
+    }
+}
+@mixin down-md {
+    @media screen and (max-width: 767px) {
+        @content;
+    }
+}
+@mixin down-lg {
+    @media screen and (max-width: 991px) {
+        @content;
+    }
+}
+@mixin down-xl {
+    @media screen and (max-width: 1199px) {
+        @content;
+    }
+}
+@mixin down-xxl {
+    @media screen and (max-width: 1399px) {
+        @content;
+    }
+}
+
+// For larger device
+@mixin up-sm {
+    @media screen and (min-width: 576px) {
+        @content;
+    }
+}
+@mixin up-md {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+@mixin up-lg {
+    @media screen and (min-width: 992px) {
+        @content;
+    }
+}
+@mixin up-xl {
+    @media screen and (min-width: 1200px) {
+        @content;
+    }
+}
+@mixin up-xxl {
+    @media screen and (min-width: 1400px) {
+        @content;
+    }
+}

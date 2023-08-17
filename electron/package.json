@@ -1,0 +1,13 @@
+{
+  "name": "bilddit",
+  "description": "bilddit Vendor/Merchant Platform",
+  "author": {
+    "name": "Mobikasa",
+    "email": "mk@mobikasa.com"
+  },
+  "version": "0.0.1",
+  "main": "main.js",
+  "private": true,
+  "dependencies": {
+  }
+}
