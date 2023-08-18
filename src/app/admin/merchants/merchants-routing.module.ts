@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListingComponent } from './listing/listing.component';
-// import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
+import { MerchantDetailsComponent } from './merchant-details/merchant-details.component';
+import { MerchantUpdateComponent } from './merchant-update/merchant-update.component';
 // import { VendorUpdateComponent } from './vendor-update/vendor-update.component';
 // import { VendorProductsComponent } from './vendor-products/vendor-products.component';
 // import { VendorPayoutsComponent } from './vendor-payouts/vendor-payouts.component';
@@ -18,14 +19,14 @@ const routes: Routes = [
         path: 'listing',
         component:ListingComponent,
       },
-    //   {
-    //     path: 'detail/:id',
-    //     component:VendorDetailComponent,
-    //   },
-    //   {
-    //     path: 'edit/:id',
-    //    component:VendorUpdateComponent,
-    //   },
+      {
+        path: 'detail/:id',
+        component:MerchantDetailsComponent,
+      },
+      {
+        path: 'edit/:id',
+       component:MerchantUpdateComponent,
+      },
     //   {
     //     path: ':id/products',
     //     component:VendorProductsComponent,

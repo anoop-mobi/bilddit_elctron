@@ -1,0 +1,258 @@
+.vendor-update-detail{
+    &-wrap {
+        border-radius: 14px;
+        border: 3px solid #FFF;
+        background: #fff;
+        box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+        margin-block: 21px 30px;
+    }
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #D2D2D2;
+        padding: 20px 30px;
+        margin-bottom: 14px;
+        margin-inline: -3px;
+        .vendor-name {
+            font-family: Montserrat;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 20px;
+            letter-spacing: 0.18px;
+        }
+        .vendor-last-active {
+            color: #7D7D7D;
+            font-family: Montserrat;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 35px;
+        }
+        button.btn.btn-primary {
+            display: inline-flex;
+            padding: 13px 20px;
+            justify-content: center;
+            align-items: center;
+            font-family: Montserrat;
+            font-size: 14px;
+            font-style: normal;
+            height: 36px;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: 0.14px;
+        }
+
+    }
+    &-content {
+        padding-inline: 30px;
+        padding-top: 20px;
+        h4.customised-form-heading {
+            font-family: Montserrat;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            color: #333;
+            line-height: 20px;
+            margin-top: 10px;
+            letter-spacing: 0.16px;
+        }
+        .wrap-checkbox-ct-address {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .operating-hours{
+            &-contet-row {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+                .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background{
+                    border-radius: 2px;
+                    border: 1px solid #E1E1E1;
+                    background: #FFF; 
+                }
+                .operating-input-grp {
+                    display: flex;
+                    align-items: center;
+                    opacity: .6;
+                    pointer-events: none;
+                    
+                }
+                
+            }
+            &-table {
+                margin-block: 20px 30px;
+            }
+            &-heading {
+                display: inline-flex;
+                align-items: center;
+                column-gap: 3px;
+                font-family: Montserrat;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin-bottom: 15px;
+                padding-left: 10px;
+                p{
+                    font-size: 14px;
+                    font-weight: 300;
+                }
+            }
+            &-opening-input,
+            &-closing-input
+            {
+                margin-inline: 10px;
+                min-width: 105px;
+                input{
+                    width: 100%;
+                    border-radius: 4px;
+                    border: 1px solid #E1E1E1;
+                    background: #FFF;
+                    padding-inline: 5px;
+                }
+            }
+            &-svg {
+                display: flex;
+            }
+            &-day {
+                min-width: 145px;
+                font-family: Montserrat;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px;
+            }
+        }
+    }
+    &-add-holiday{
+        &-wrap{
+            .vendor-holiday-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-family: Montserrat;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin-block: 10px;
+            }
+        }
+        &-header{
+            font-family: Montserrat;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin-bottom: 16px;
+        }
+        &-content {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            column-gap: 16px;
+            
+        }
+        &-inputs {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            column-gap: 16px;
+        }
+        &-button {
+            display: flex;
+            align-items: center;
+            margin-bottom: 22px;
+            button {
+                border-radius: 60px;
+                background: #6ECB44;
+                width: 100%;
+                min-width: 150px;
+                color: #FFF;
+                text-align: center;
+                font-family: Montserrat;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                padding: 13px 20px;
+                line-height: 20px; 
+            }
+        }
+        
+    }
+    
+}
+
+@media screen and (max-width:960px){
+    .vendor-update-detail{
+        &-content {
+            padding-inline: 15px;
+            .operating-hours{
+                &-opening-input,
+                &-closing-input
+                {
+                    margin-inline: 8px;
+                    min-width: 70px;
+                    input{
+                        font-size: 12px;
+                        min-height: 35px;
+                    }
+                }
+                &-day{
+                    min-width: 75px;
+                    font-size: 12px;   
+                }
+                &-svg{
+                    width: 10px;
+                }
+                &-heading {
+                    font-size: 14px;
+                    p{
+                        font-size: 12px;
+                        font-weight: 400;
+                    }
+                }
+            }
+           
+        }
+        &-add-holiday {
+            &-content{
+                display: block;
+            }
+        }
+    }
+    .vendor-update-detail-content .operating-hours-contet-row{
+        flex-wrap: wrap;
+    }
+    .vendor-update-detail-content .operating-hours-opening-input, .vendor-update-detail-content .operating-hours-closing-input{
+        max-width: 140px;
+    }
+}
+
+@media screen and (max-width:592px){
+    .vendor-update-detail{
+        &-add-holiday {
+            &-inputs{
+                display: block;
+            }
+        }
+        &-content{
+            .wrap-checkbox-ct-address {
+                display: block;
+                margin-bottom: 15px;
+            }
+            h4.customised-form-heading{
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
+
+
+.vendor-update-detail-content .operating-hours-contet-row.activeItem .operating-input-grp{
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+}

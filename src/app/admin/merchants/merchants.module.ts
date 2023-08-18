@@ -15,13 +15,17 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MerchantDetailsComponent } from './merchant-details/merchant-details.component';
+import { MerchantUpdateComponent } from './merchant-update/merchant-update.component';
 
 
 @NgModule({
   declarations: [
     MerchantsComponent,
     ListingComponent,
-    AddMerchantComponent
+    AddMerchantComponent,
+    MerchantDetailsComponent,
+    MerchantUpdateComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,220 @@
+<div class="vendor-detail-main">
+    <div class="vendor-detail-content-wrap">
+        <div class="vendor-detail-content-header">
+            <div class="vendor-name-last-active-wrap">
+                <div class="vendor-name">
+                    <span class="vendor-first-name">
+                        {{ vendorJsonData?.first_name}}
+                    </span>
+                    <span class="vendor-last-name">
+                        {{ vendorJsonData?.last_name}}
+                    </span>
+                 
+                </div>
+                <div class="vendor-last-active">
+                    Last active time: 20 minutes ago
+                </div>
+            </div>
+            <div class="vendor-detail-edit-btn">
+            <a routerLink="../../edit/{{vendorJsonData?.id}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M8.52543 1.38019L8.52543 1.3802L10.6203 3.47457C10.6853 3.53957 10.7369 3.61675 10.7721 3.70169C10.8072 3.78663 10.8254 3.87766 10.8254 3.9696C10.8254 4.06154 10.8072 4.15258 10.7721 4.23752C10.7369 4.32246 10.6853 4.39963 10.6203 4.46463L10.6556 4.49999L10.6203 4.46464L5.37027 9.71464L5.28492 9.79999H5.40563H10.125C10.2112 9.79999 10.2939 9.83424 10.3548 9.89518C10.4158 9.95613 10.45 10.0388 10.45 10.125C10.45 10.2112 10.4158 10.2939 10.3548 10.3548C10.2939 10.4158 10.2112 10.45 10.125 10.45H2.25C2.06435 10.45 1.8863 10.3762 1.75503 10.245C1.62375 10.1137 1.55 9.93565 1.55 9.74999L1.55 7.65515L1.55 7.65499C1.54971 7.56309 1.56769 7.47205 1.60289 7.38716C1.63809 7.30226 1.68982 7.22521 1.75506 7.16049L1.7552 7.16035L7.53536 1.38019L7.53536 1.38019C7.60037 1.31517 7.67754 1.26359 7.76248 1.22841C7.84742 1.19322 7.93846 1.17511 8.0304 1.17511C8.12233 1.17511 8.21337 1.19322 8.29831 1.22841C8.38325 1.26359 8.46042 1.31517 8.52543 1.38019ZM6.41036 3.49479L6.375 3.45944L6.33965 3.49479L2.3698 7.46464L2.33445 7.49999L2.3698 7.53535L3.15215 8.31769L3.1875 8.35305L3.22286 8.31769L7.1927 4.34785L7.22806 4.31249L7.1927 4.27714L6.41036 3.49479ZM2.2 9.74999V9.79999H2.25H3.59485H3.71556L3.6302 9.71464L2.28536 8.36979L2.2 8.28444V8.40515V9.74999ZM4.46464 9.63018L4.49999 9.66556L4.53536 9.63019L8.5052 5.66035L8.54056 5.62499L8.5052 5.58964L7.72286 4.80729L7.6875 4.77194L7.65215 4.8073L3.68277 8.77714L3.64743 8.81249L3.68276 8.84784L4.46464 9.63018ZM8.96464 5.13019L9 5.16555L9.03536 5.13019L10.1604 4.00519L10.1957 3.96984L10.1604 3.93449L8.06599 1.83964L8.03063 1.80428L7.99527 1.83964L6.87027 2.96464L6.83492 2.99999L6.87027 3.03534L8.96464 5.13019Z" fill="#333333" stroke="white" stroke-width="0.1"/>
+                </svg>
+                <span>
+                    Edit
+                </span>
+            </a>
+            </div>
+        </div>
+
+        <div class="vendor-detail-content">
+            <div class="vendor-detail-content-body">
+                <div class="content-body-first-half">
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Company Name
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.company_name}}
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Company Number
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.company_number}} 
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            First Name (of principal contact)
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.first_name}}
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Email
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.email}}
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Secondary Email
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.secondary_email}}
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            landline number
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.landline_number }}
+                        </div>
+                    </div> 
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Branch Address
+                        </div>
+                        <div class="vendor-detail-value  branch-address">
+                            123 Main Street London SW1A 1AA, United Kingdom
+                        </div>
+                    </div>                         
+                </div>
+                <div class="content-body-second-half">
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Company Trading Name
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.company_trading_name}}                           
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            VAT Number
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.vat_number}} 
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Last Name (of principal contact)
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.last_name}}
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Phone Number
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.mobile}} 
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Secondary Phone Number
+                        </div>
+                        <div class="vendor-detail-value">
+                            {{ vendorJsonData?.secondary_phone}} 
+                        </div>
+                    </div>
+                    <div class="vendor-detail-grp">
+                        <div class="vendor-detail-label">
+                            Company Registered Address
+                        </div>
+                        <div class="vendor-detail-value  branch-address">
+                            123 Main Street London SW1A 1AA, United Kingdom
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+        <div class="vendor-detail-content-footer">
+            <div class="content-footer-first-half">
+                <a routerLink="../../{{vendorJsonData?.id}}/payouts" >Go to Payouts</a>
+            </div>
+            <div class="content-footer-second-half">
+                <a routerLink="../../{{vendorJsonData?.id}}/products" >Go to Products</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="vendor-detail-card-wrap">
+        <div class="vendor-detail-card-main vendor-total-order">
+            <div class="vendor-detail-card-left-half">
+                <img src="assets/images/cart-icon.svg" >
+            </div>
+            <div class="vendor-detail-card-right-half">
+                <div class="vendor-detail-card-head">
+                    Total Orders
+                </div>
+                <div class="vendor-detail-card-detail">
+                    264385
+                </div>
+            </div>
+        </div>
+        <div class="vendor-detail-card-main vendor-total-revenue">
+            <div class="vendor-detail-card-left-half">
+                <img src="assets/images/revenue-icon.svg" >
+            </div>
+            <div class="vendor-detail-card-right-half">
+                <div class="vendor-detail-card-head">
+                    Total Orders
+                </div>
+                <div class="vendor-detail-card-detail">
+                    {{ 600 | currency:'GBP': 'symbol' : '1.0-0' }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="vendor-detail-table-wrap">
+        <div class="vendor-detail-table-header">
+            <div class="vendor-detail-table-header-text">
+                Revenue
+            </div>
+        </div>
+        <div class="vendor-detail-table-content">
+            <table mat-table [dataSource]="dataRevenueSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="OrderId">
+                    <th mat-header-cell *matHeaderCellDef>Order ID</th>
+                    <td mat-cell *matCellDef="let element" data-label="Order ID"> {{element.OrderId}} </td>
+                </ng-container>
+               
+                <ng-container matColumnDef="companyTradingName">
+                  <th mat-header-cell *matHeaderCellDef>Company Trading Name</th>
+                  <td mat-cell *matCellDef="let element" data-label="Company Trading Name"> {{element.companyTradingName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef>Date</th>
+                    <td mat-cell *matCellDef="let element" data-label="Date"> {{element.date}} </td>
+                  </ng-container>
+              
+               
+                <ng-container matColumnDef="location">
+                  <th mat-header-cell *matHeaderCellDef>Location</th>
+                  <td mat-cell *matCellDef="let element" data-label="Location"> {{element.location}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="totalAmount">
+                  <th mat-header-cell *matHeaderCellDef>Total Amount</th>
+                  <td mat-cell *matCellDef="let element" data-label="Total Amount"> {{element.totalAmount | currency:'GBP' }} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>            
+        </div>
+    </div>
+</div>
