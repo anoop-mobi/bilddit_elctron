@@ -20,7 +20,12 @@ const routes: Routes = [
 
       {
         path: 'merchants',
-        component:MerchantsComponent
+        component:MerchantsComponent,
+        loadChildren: () =>
+        // src\app\base\admin\vendor-listing\vendor-listing.module.ts
+          import('./merchants/merchants.module').then(
+            (m) => m.MerchantsModule
+          ),
       },
       {
         path: 'orders',
