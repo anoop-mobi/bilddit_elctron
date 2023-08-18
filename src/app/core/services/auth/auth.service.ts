@@ -61,10 +61,10 @@ export class AuthService {
         if (roleId === 2) {
           this.route.navigate(['vendor-dashboard']);
         } else if (roleId === 1) {
-          const navigationExtras: NavigationExtras = {
-            queryParams: { role: roleId, token: this.token }
-          };
-          this.route.navigate(['admin'], navigationExtras);
+          // const navigationExtras: NavigationExtras = {
+          //   queryParams: { role: roleId, token: this.token }
+          // };
+          this.route.navigate(['admin'] /*, navigationExtras */);
         } else {
 
         }

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components';
 import { LoginComponent } from './shared/components/login/login.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserAuthGuard } from './core/services/auth/auth.guard';
 
 
 
@@ -14,6 +16,16 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [UserAuthGuard],
+    loadChildren: () =>
+      import('./admin/admin.module').then(
+        (m) => m.AdminModule
+      ),
+
   },
   {
     path: '**',
