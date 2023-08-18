@@ -1,1 +1,138 @@
-<p>dashboard works!</p>
+<div class="dashboard-main-wrap">
+
+    <div class="dashboard-card-wrap">
+        <div class="dashboard-card dash-total-order">
+            <div class="dashboard-card-left-half">
+                <img src="assets/images/cart-icon.svg" >
+            </div>
+            <div class="dashboard-card-right-half">
+                <div class="dashboard-card-head">
+                    Total Orders
+                </div>
+                <div class="dashboard-card-detail">
+                    6430
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-card dash-order-in-process">
+            <div class="dashboard-card-left-half">
+                <img src="assets/images/order-icon.svg" >
+            </div>
+            <div class="dashboard-card-right-half">
+                <div class="dashboard-card-head">
+                    Orders In Process
+                </div>
+                <div class="dashboard-card-detail">
+                    221
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-card dash-revenue">
+            <div class="dashboard-card-left-half">
+                <img src="assets/images/revenue-icon.svg" >
+            </div>
+            <div class="dashboard-card-right-half">
+                <div class="dashboard-card-head">
+                   Revenue
+                </div>
+                <div class="dashboard-card-detail">                        
+                    {{ 600 | currency:'GBP': 'symbol' : '1.0-0' }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-table-wrap monthly-order-table">
+        <div class="dashboard-table-header">
+            <div class="dashboard-table-header-text">
+                Monthly Orders
+            </div>
+            <button type="button" class="dashboard-table-header-btn">
+                View ALL
+            </button>
+        </div>
+        <div class="dashboard-table-content">
+            <table mat-table [dataSource]="dataOrderSource" class="mat-elevation-z8">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Position Column -->
+                <ng-container matColumnDef="orderNo">
+                  <th mat-header-cell *matHeaderCellDef>Order No </th>
+                  <td mat-cell *matCellDef="let element"  data-label="Order No"> {{element.orderNo}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="orderOn">
+                  <th mat-header-cell *matHeaderCellDef> Ordered On</th>
+                  <td mat-cell *matCellDef="let element"  data-label="Ordered On"> {{element.orderOn}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="totalAmount">
+                  <th mat-header-cell *matHeaderCellDef>Total Amount</th>
+                  <td mat-cell *matCellDef="let element"  data-label="Total Amount"> {{element.totalAmount | currency:'GBP' }} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="customerName">
+                  <th mat-header-cell *matHeaderCellDef>Customer Name</th>
+                  <td mat-cell *matCellDef="let element"  data-label="Customer Name"> {{element.customerName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="vendorName">
+                    <th mat-header-cell *matHeaderCellDef>Vendor Name</th>
+                    <td mat-cell *matCellDef="let element"  data-label="Vendor Name"> {{element.vendorName}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="orderDisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: orderDisplayedColumns;"></tr>
+            </table>            
+        </div>
+    </div>
+    
+    <div class="dashboard-table-wrap revenue-table">
+        <div class="dashboard-table-header">
+            <div class="dashboard-table-header-text">
+                Revenue
+            </div>
+            <button type="button" class="dashboard-table-header-btn">
+                View ALL
+            </button>
+        </div>
+        <div class="dashboard-table-content">
+            <table mat-table [dataSource]="dataRevenueSource" class="mat-elevation-z8">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <ng-container matColumnDef="vendorName">
+                    <th mat-header-cell *matHeaderCellDef>Vendor Name</th>
+                    <td mat-cell *matCellDef="let element" data-label="Vendor Name"> {{element.vendorName}} </td>
+                </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="companyTradingName">
+                  <th mat-header-cell *matHeaderCellDef>Company Trading Name </th>
+                  <td mat-cell *matCellDef="let element" data-label="Company Trading Name"> {{element.companyTradingName}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="location">
+                  <th mat-header-cell *matHeaderCellDef>Location</th>
+                  <td mat-cell *matCellDef="let element" data-label="Location"> {{element.location}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="totalAmount">
+                  <th mat-header-cell *matHeaderCellDef>Total Amount</th>
+                  <td mat-cell *matCellDef="let element" data-label="Total Amount" > {{element.totalAmount | currency:'GBP' }} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>            
+        </div>
+    </div>
+    
+ </div>

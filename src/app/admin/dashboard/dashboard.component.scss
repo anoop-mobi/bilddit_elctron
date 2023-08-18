@@ -1,0 +1,133 @@
+.dashboard-card {
+    border-radius: 14px;
+    border: 3px solid #FFF;
+    background: linear-gradient(180deg, #FFF 0%, #FDFDFF 100%);
+    box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+    margin: 20px 0;
+    width: 100%;
+    padding: 20px 10px;
+    display: flex;
+
+    &-wrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    &-right-half {
+        padding-left: 12px;
+    }
+
+    &-detail {
+        color: #68B546;
+        font-family: Montserrat;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 23px;
+        padding-top: 10px;
+    }
+
+    &-head {
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0.14px;
+        color: #333;
+    }
+
+}
+
+.dashboard-table {
+    &-wrap {
+        background: #fff;
+        box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+        border-radius: 10px;
+
+        &.revenue-table {
+            margin-top: 20px;
+            margin-bottom: 27px;
+        }
+    }
+
+    &-content {
+        padding-inline: 30px;
+    }
+
+    &-content table {
+        box-shadow: none;
+    }
+
+    &-header {
+        border-bottom: 1px solid #ccc;
+        padding: 10px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &-header-btn {
+        border-radius: 60px;
+        background: var(--primary-color);
+        color: #fff;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        text-transform: capitalize;
+        letter-spacing: 0.14px;
+        padding: 13px 20px;
+        border: 3px solid #FFF;
+    }
+
+    &-header-text {
+        font-family: Montserrat;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0.18px;
+    }
+}
+@media screen and (max-width: 960px) {
+    .dashboard-card{
+        margin: 0;
+        padding: 10px;
+        &-wrap{
+            flex-direction: column;
+            gap: 10px;
+            margin-block: 20px;
+        }
+        &-head{
+            font-size: 13px;
+        }
+        &-detail{
+            font-size: 24px;
+        }
+    }
+    .dashboard-table{
+        &-wrap{
+            background: inherit;
+            box-shadow: none;
+            border:none;
+        }
+        &-header{
+            background: #fff;
+            box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.1);
+            border-radius: 10px;
+            border: 1px solid #fff;
+            &-text{
+                font-size: 14px;
+            }
+        }
+        &-content{
+            padding: 0;
+        }
+        &-header-btn{
+            padding: 5px 15px;
+            font-size: 12px;
+        }
+    }
+}
