@@ -22,3 +22,9 @@ export interface VendorRevenueElement {
   
 }
 
+export interface OrderTable{
+    order_product_name: string,
+    order_price: number,
+    order_qty :number,
+    order_total: number
+  }

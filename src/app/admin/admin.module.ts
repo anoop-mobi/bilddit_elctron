@@ -14,7 +14,9 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PayoutsComponent } from './payouts/payouts.component';
 import { MerchantsModule } from './merchants/merchants.module';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { MerchantsModule } from './merchants/merchants.module';
     NavigationComponent,
     OrdersComponent,
     PayoutsComponent,
+    OrderDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,9 @@ import { MerchantsModule } from './merchants/merchants.module';
     MatChipsModule,
     MatCheckboxModule,
     FormsModule,
-    MerchantsModule
+    MerchantsModule,
+    MatDatepickerModule,
+    // MatNativeDateModule
   ]
 })
 export class AdminModule { }

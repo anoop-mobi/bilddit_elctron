@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PayoutsComponent } from './payouts/payouts.component';
 import { MerchantsComponent } from './merchants/merchants.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 // import { VendorListingComponent } from './vendor-listing/vendor-listing.component';
 
 const routes: Routes = [
@@ -29,8 +30,15 @@ const routes: Routes = [
       },
       {
         path: 'orders',
-        component:OrdersComponent
+        component:OrdersComponent,
+        
       },
+      {
+        path: 'orders-detail',
+        component:OrderDetailComponent,
+        
+      },
+      
       {
         path: 'payouts',
         component:PayoutsComponent

@@ -1,0 +1,297 @@
+.order-listing
+    { 
+    &-wrap {
+        border-radius: 14px;
+        border: 3px solid #FFF;
+        background: #fff;
+        box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+        margin-block: 20px 27px;
+        padding-block: 22px 20px;
+    }
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 20px;
+    }
+    &-filter-wrap {
+        display: flex;
+        width: 100%;
+        padding-inline: 20px;
+        padding-block: 13px 20px;
+        .data_filter {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            .order-listing{
+                &-merchant-filter,
+                &-order-status-filter,
+                &-date-range-filter,
+                &-search-filter{
+                       width: 100%;
+               }
+            }
+            
+        }
+
+    }
+
+    &-middle-sub-detail-grp{
+        .sub-detail-updated-date {
+            font-family: Montserrat;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 10px;
+            padding-bottom: 15px;
+        }
+        .sub-detail-total-amount {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 10px;
+            padding-bottom: 15px;
+        }
+    }
+    
+    &-header-text {
+        font-family: Montserrat;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+    &-vendor-name {
+        font-family: Montserrat;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+    }
+
+    &-mapping-status {
+        color: #C96B6B;
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.14px;
+        background: #F8F9FA;
+        margin-inline: -3px;
+        padding: 10px;
+    }
+    &--detail-container {
+        padding: 20px;
+        border-bottom: 1px solid #E4E6EA;
+        margin-inline: -3px;
+    }
+    &-content {
+        display: flex;
+        justify-content: space-between;
+        .sub-detail-seperator {
+            margin-inline: 10px;
+            font-size: 12px;
+        }
+    }
+    &-deatil-wrap {
+        max-width: 62%;
+        width: 100%;
+        margin-left:15px;
+        margin-right: 10px;
+    }
+    &-bagges-btn-wrap {
+        max-width: 30%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .order-status-badge,.map-status-badge {
+            color: #FFF;
+            text-align: center;
+            font-family: Montserrat;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0.12px;
+            padding: 3px 12px;
+            border-radius: 60px;
+            background-color: #6ECB44;
+            &.rejected{
+                background: #C96B6B;
+            }
+          
+        }
+        .order-listing-badges-grp {
+            display: flex;
+            gap: 10px;
+        }
+    }
+    &-price-btn button {
+        color: #3E7028;
+        text-align: right;
+        font-family: Montserrat;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 500;
+        padding: 0;
+        line-height: 14px;
+        text-decoration-line: underline;
+    }
+   
+
+    &-title {
+        font-family: Montserrat;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        color: #333333;
+        padding-bottom: 12px;
+    }
+    &-id
+    {
+        line-height: 10px;
+        padding-bottom: 14px;
+        span {
+            color: #333333;
+            font-family: Montserrat;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            &.order-listing-id-value{
+               padding-left: 5px;
+                color: #6ECB44;
+            }
+    } 
+    }
+    &-bottom-sub-detail-grp {
+        display: flex;
+        font-family: Montserrat;
+        color: #333333;
+        align-items: center;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        span.sub-detail-customer-name-value,
+        .sub-detail-merchant-name-value
+        {
+            font-weight: 500;
+        }
+    }
+    
+    
+}
+
+@media screen and (max-width: 1200px) {
+    .order-listing{
+        &-filter-wrap {
+
+            .data_filter{
+                display: grid;
+                gap: 10px;
+                width: 100%;
+                grid-template-columns: 50% 50%;
+            }
+           
+        }
+    }   
+}
+@media screen  and (max-width:992px){
+    .order-listing{
+        &-filter-wrap{
+        display: flex;
+        width: 100%;
+        gap: 15px;
+        padding-inline: 20px;
+        padding-block: 13px 20px;
+        flex-direction: column;
+        }
+     
+        &-deatil-wrap{
+            max-width: 55%;
+        }
+       
+        &--title{
+            padding-bottom: 0px;
+        }
+
+        &-title{
+            padding-bottom: 0;
+        } 
+    }
+    
+}
+@media screen  and (max-width:767px){
+    .order-listing{
+        &-filter{
+            &-wrap
+            {
+                flex-direction: column;
+                .data_filter{
+                    flex-direction: column;
+                    display: flex;
+                }
+            }
+        }
+        &-bagges-btn-wrap{
+            .order-listing-badges-grp{
+                flex-direction: column;
+            }
+        }
+        &-bagges-btn-wrap{
+            max-width: 30%;
+        }
+        &-deatil-wrap{
+            max-width: 70%;
+        }
+        &-bottom-sub-detail-grp{
+            flex-direction: column;
+            gap: 6px;
+            align-items: self-start;
+        }
+        &-content .sub-detail-seperator{
+            display: none;
+        }
+    }
+}
+@media screen  and (max-width:492px){
+    .order-listing{
+        &-filter{
+            &-wrap{
+            .order-listing-buttons-grp{
+                flex-direction: column;
+            }
+         }
+        }
+
+        &-id{
+            span{
+                font-size: 14px;
+            }
+
+        }
+        &-middle-sub-detail-grp{
+
+            .sub-detail-total-amount{
+                font-size: 12px;
+                padding-bottom: 6px;
+                line-height: 14px;
+            }
+            .sub-detail-updated-date{
+                padding-bottom: 6px;
+                line-height: 14px;
+            }
+        }
+       
+        &-bottom-sub-detail-grp{
+          font-size: 12px;
+          line-height: 14px;
+        }
+    }
+    
+}

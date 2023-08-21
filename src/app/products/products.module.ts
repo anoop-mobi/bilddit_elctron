@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 
@@ -18,7 +19,8 @@ import { MatTableModule } from '@angular/material/table';
     ProductsComponent,
     ProductImportModalComponent,
     ProductsMappingPopupsComponent,
-    MerchantProductMappingComponent
+    MerchantProductMappingComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,

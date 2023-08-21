@@ -1,0 +1,19 @@
+.product-detail{
+    &-wrap{
+        .product-img-slider-wrap {
+            padding: 80px 60px 10px 60px;
+            background: #F8F8F8;
+            margin-top: 10px;
+        }
+        .slick-slide img {
+            display: block;
+            margin: auto;
+            padding: 75px 44px;
+            max-width: 270px;
+            width: 100%;
+        }
+        
+    }
+}
+
+

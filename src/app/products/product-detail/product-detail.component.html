@@ -1,0 +1,24 @@
+<div class="product-detail-wrap">
+    <div class="product-img-slider-wrap">
+       <div class="product-img-slider">
+        <!-- <ngx-slick-carousel class="carousel" 
+            #slickModal="slick-carousel" 
+            [config]="slideConfig" 
+            (init)="slickInit($event)"
+            (breakpoint)="breakpoint($event)"
+            (afterChange)="afterChange($event)"
+            (beforeChange)="beforeChange($event)"
+         > -->
+            <div ngxSlickItem class="product-img" *ngFor="let slide of slides">
+                <img  src="{{ slide.img }}" />
+            </div>
+            
+        <!-- </ngx-slick-carousel> -->
+       </div> 
+    </div>
+    <div class="product-detail-body-wrap">
+        <div class="product-title">
+            Brass Basin Mixer Tap  Aquant
+        </div>
+    </div>
+</div>

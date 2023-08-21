@@ -1,0 +1,274 @@
+
+<div class="order-detail-wrap">
+    <div class="order-content-wrap">
+        <div class="order-table-header">
+            <div class="order-header-first-half">
+                <div class="order-header-order-id">
+                    <span class="order-header-order-id-label">
+                        Order
+                    </span>
+                    <span class="order-header-order-id-value">
+                        #6385638-1
+                    </span>
+                </div>
+                <div class="order-header-order-date">
+                    <span class="order-header-order-date-label">
+                        Date: 
+                    </span>
+                    <span class="order-header-order-date-value">
+                        Dec 3, 2023
+                    </span>
+                </div>
+            </div>
+            <div class="order-header-second-half">
+                <div class="order-header-order-status">
+                    <span class="order-header-order-status-label">
+                        Order Status: 
+                    </span>
+                    <span class="order-header-order-status-value">
+                        Processing
+                    </span>
+                </div>
+                <div class="order-header-order-status">
+                    <span class="order-header-order-merchant-name">
+                        Laura L. Burger
+                    </span>                  
+                </div>
+            </div>
+        </div>
+        <div class="order-data-seperator">
+            
+        </div>
+        <div class="order-detail-table">
+            <div class="order-detail-table-top">
+                <table mat-table [dataSource]="OrderTableItems">
+                    <ng-container matColumnDef="order_product_name">
+                        <th mat-header-cell *matHeaderCellDef>Products</th>
+                        <td  mat-cell *matCellDef="let OrderTableItem" data-label="Products">
+                            <div  class="order-product-img-name-grp">
+                                <div class="order-product-img"> <img src="/assets/images/product-image.jpg"></div>
+                                <div class="order-product-title">{{ OrderTableItem?.order_product_name ?? '-'}} </div>
+                            </div>
+                        </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="order_price">
+                        <th mat-header-cell *matHeaderCellDef>Price</th>
+                        <td mat-cell *matCellDef="let OrderTableItem" data-label="Price">
+                            <span>
+                                {{ OrderTableItem?.order_price ?? '-'}}
+                             </span>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="order_qty">
+                        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+                        <td mat-cell *matCellDef="let OrderTableItem" data-label="Quantity"><span>{{ OrderTableItem?.order_qty ?? '-'}}</span></td>
+                    </ng-container>
+                    <ng-container matColumnDef="order_total">
+                        <th mat-header-cell *matHeaderCellDef>Total</th>
+                        <td mat-cell *matCellDef="let OrderTableItem" data-label="Total"><span>{{ OrderTableItem?.order_total ?? '-'}}</span> </td>
+                        
+                    </ng-container>
+            
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                        {{tabelDataStatus}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="order-detail-table-bottom">
+                <div class="order-payment-detail">
+                    <div class="order-payment-detail-title">
+                        Order Price
+                    </div>
+                    <div class="order-payment-detail-wrap">
+                        <div class="order-subtotal-grp">
+                            <div class="order-subtotal-title">
+                                Subtotal
+                            </div>
+                            <div class="order-subtotal-value">
+                                2699.80
+                            </div>
+                        </div>
+                        <div class="order-shipping-grp">
+                            <div class="order-shipping-title">
+                                Shipping
+                            </div>
+                            <div class="order-shipping-value">
+                                99.80
+                            </div>
+                        </div>
+                        <div class="order-total-grp">
+                            <div class="order-total-title">
+                                Total
+                            </div>
+                            <div class="order-total-value">
+                                2798.90
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="order-cutomer-detail">
+        <div class="order-customer-detail-title">
+            Customer Information
+        </div>
+        <div class="customer-detail-wrap">
+            <div class="customer-detail-grp">
+                <div class="customer-detail-first-half">
+                    <div class="customer-detail-first-name">
+                        <div class="customer-detail-label">
+                            First Name 
+                        </div>
+                        <div class="customer-detail-value">
+                            Richard
+                        </div>
+                    </div>
+                    <div class="customer-detail-phone-number">
+                        <div class="customer-detail-label">
+                            Phone Number
+                        </div>
+                        <div class="customer-detail-value">
+                            +44 7896541235
+                        </div>
+                    </div>  
+                </div>
+                <div class="customer-detail-second-half">
+                    <div class="customer-detail-last-name">
+                        <div class="customer-detail-label">
+                            Last Name 
+                        </div>
+                        <div class="customer-detail-value">
+                            George
+                        </div>
+                    </div>
+                    <div class="customer-detail-email">
+                        <div class="customer-detail-label">
+                            Email
+                        </div>
+                        <div class="customer-detail-value">
+                            rgeorge@gmail.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="customer-detail-address">
+                <div class="customer-detail-label">
+                    Shipping Address 
+                </div>
+                <div class="customer-detail-value">
+                    123 Main Street London SW1A 1AA, United Kingdom
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order-timeline-wrap">
+        <div class="order-timeline-header">
+           <div class="order-timeline-title">
+                Timeline
+           </div> 
+           <div class="order-timeline-btn">
+                <button>
+                    <span>
+                       <img alt="location" src="assets/icons/location-icon.svg" />
+                    </span>
+                    <span>Track Shipment</span>
+                </button>
+            </div> 
+        </div>
+        <div class="order-timeline-body">
+           <div class="order-timeline-left-part">
+                <div  class="order-timeline-progress-wrap">
+                    <div class="order-timeline-date" >
+                        <div class="order-timeline-msg-icon-wrap">
+                            <div class="order-timeline-icon">
+                                <img src="assets/images/timeline-icon.svg" alt="timeline"/>
+                            </div>
+                            <div class="order-timeline-status-msg">
+                                Today
+                            </div>
+                        </div>
+                        <div class="order-timeline-time-stamp">
+                            
+                        </div>
+                       
+                    </div>
+                    <div class="order-timeline-shipped-status">
+                        <div class="order-timeline-msg-icon-wrap">
+                            <div class="order-timeline-status-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <circle cx="7" cy="7" r="7" fill="#D9D9D9" [ngStyle]="{'fill': timelinestatus >= 4 ? '#6ECB44' :'#D9D9D9'}"/>
+                                </svg>
+                            </div>
+                            <div class="order-timeline-status-msg">
+                                The order has been shipped
+                            </div>
+                        </div>
+                        <div class="order-timeline-time-stamp">
+                            12.44 AM
+                        </div>
+                        
+                    </div>
+                    <div class="order-timeline-picked-status">
+                        <div class="order-timeline-msg-icon-wrap">
+                            <div class="order-timeline-status-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <circle cx="7" cy="7" r="7" fill="#D9D9D9" [ngStyle]="{'fill': timelinestatus >= 3 ? '#6ECB44' :'#D9D9D9'}"/>
+                                </svg>
+                            </div>
+                            <div class="order-timeline-status-msg">
+                                The order has been picked
+                            </div>
+                        </div>
+                        <div class="order-timeline-time-stamp">
+                            12.34 AM
+                        </div>
+                       
+                    </div>
+                    <div class="order-timeline-processed-status">
+                        <div class="order-timeline-msg-icon-wrap">
+                            <div class="order-timeline-status-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <circle cx="7" cy="7" r="7" fill="#D9D9D9" [ngStyle]="{'fill': timelinestatus >= 2 ? '#6ECB44' :'#D9D9D9'}" />
+                                </svg>
+                            </div>
+                            <div class="order-timeline-status-msg">
+                                The order has been processed.
+                            </div>
+                        </div>
+                        <div class="order-timeline-time-stamp">
+                            12.24 AM
+                        </div>
+                        
+                    </div>
+                    <div class="order-timeline-recieved-status">
+                        <div class="order-timeline-msg-icon-wrap">
+                            <div class="order-timeline-status-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                    <circle cx="7" cy="7" r="7" fill="#D9D9D9" [ngStyle]="{'fill': timelinestatus >= 1 ? '#6ECB44' :'#D9D9D9'}" />
+                                </svg>
+                            </div>
+                            <div class="order-timeline-status-msg">
+                                Bilddit have Received this order.
+                            </div>
+                        </div>
+                        
+                        <div class="order-timeline-time-stamp">
+                            12.34 AM
+                        </div>
+                    </div>
+                    
+                </div>
+     
+           </div> 
+        </div>
+    </div>
+</div>
+    

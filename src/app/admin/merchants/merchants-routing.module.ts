@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListingComponent } from './listing/listing.component';
 import { MerchantDetailsComponent } from './merchant-details/merchant-details.component';
 import { MerchantUpdateComponent } from './merchant-update/merchant-update.component';
+import { MerchantProductMappingComponent } from '../../products/merchant-product-mapping/merchant-product-mapping.component';
 // import { VendorUpdateComponent } from './vendor-update/vendor-update.component';
 // import { VendorProductsComponent } from './vendor-products/vendor-products.component';
 // import { VendorPayoutsComponent } from './vendor-payouts/vendor-payouts.component';
@@ -35,10 +36,10 @@ const routes: Routes = [
     //     path: ':id/payouts',
     //     component:VendorPayoutsComponent,
     //   },
-    //   {
-    //     path:':id/review-product-mapping',
-    //     component:VendorProductsMappingComponent,
-    //   }
+      {
+        path:':id/review-product-mapping',
+        component:MerchantProductMappingComponent,
+      }
 ];
 
 @NgModule({
