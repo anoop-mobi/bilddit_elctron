@@ -1,0 +1,174 @@
+<div class="modal-wrap products-mapping-pop-up" *ngIf="modalStatus"> 
+
+    <div class="modal-main">
+        <div class="modals-wrap" [ngSwitch]="switch_expression">
+            <div class="map-non-erp-product-popup" *ngSwitchCase=0>
+                <div class="modal-header">                       
+                    <div> Map New Product (Non ERP)</div>
+                    <button class="modal-close-btn " (click)="productMappingModalToggle()">x</button>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-content-header">
+                        Which Product on Your System Maps with
+                        Yellow Armoured Cable MC Wire
+                    </div>
+                    <div class="modal-content-main data_filter">
+                        <div class="modal-search-wrap ">
+                            <mat-form-field>
+                            <mat-label>Search</mat-label>
+                            <input type="search"  matInput placeholder="Search">
+                            <mat-icon matSuffix>
+                                <img src="/assets/images/search.svg"  alt="search">
+                            </mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="modal-radio-inputs-wrap non-erp-newly-mapped">
+                            <label id="example-radio-group-label"></label>
+                            <mat-radio-group
+                                aria-labelledby="example-radio-group-label"
+                                class="example-radio-group"
+                                [(ngModel)]="selectedErpProductforNonErp">
+                                    <mat-radio-button class="radio-button" *ngFor="let productData of erpproductsData" [value]="productData">
+                                        <div class="radio-option-product-img-title-wrap">                              
+                                            <div  class="radio-option-product-img"><img [src]="productData.image" /></div>
+
+                                            <div class="radio-option-title-input-grp">
+                                                <div class="radio-option-product-title">{{ productData.title}}</div>
+                                                <mat-form-field class="example-full-width">
+                                                    <!-- <mat-label>Telephone</mat-label> -->
+                                                    <span class="mat-prefix" matPrefix>£ &nbsp;</span>
+                                                    <input type="text" matInput  [(ngModel)]="productData.price">                    
+                                                </mat-form-field>
+                                            </div>
+                                           
+                                           
+                                        </div>                            
+                                    </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-button-wrap">
+                    <button type="" (click)="maperpproduct(selectedErpProductforNonErp)">
+                        Submit
+                    </button>
+                </div>
+            </div>
+
+            <div class="map-erp-product-popup" *ngSwitchCase=1>
+                <div class="modal-header">
+                    <button class="modal-close-btn " (click)="productMappingModalToggle()">
+                        x
+                    </button>
+                    <div>Map Product</div>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-content-header">
+                        Which product on your system maps with
+                        “Yellow armoured cable MC wire”
+                    </div>
+                    <div class="modal-content-main data_filter">
+                        <div class="modal-search-wrap">
+                            <mat-form-field>
+                                <mat-label>Search</mat-label>
+                                <input type="search"  matInput placeholder="Search">
+                                <mat-icon matSuffix>
+                                    <img src="/assets/images/search.svg" alt="search">
+                                </mat-icon>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="modal-radio-inputs-wrap">
+                            <label id="example-radio-group-label"></label>
+                            <mat-radio-group
+                                aria-labelledby="example-radio-group-label"
+                                class="example-radio-group"
+                                [(ngModel)]="selectedErpProduct">
+                                    <mat-radio-button class="radio-button" *ngFor="let productData of erpproductsData" [value]="productData">
+                                        <div class="radio-option-product-img-title-wrap">                       
+                                            <div  class="radio-option-product-img"><img [src]="productData.image" /></div>
+                                            <div class="radio-option-product-title">{{ productData.title}}</div>
+                                        </div>                            
+                                    </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>                       
+                </div>
+                <div class="modal-button-wrap">
+                    <button type="submit" (click)="maperpproduct(selectedErpProduct)">
+                        Save
+                    </button>
+                </div>
+            </div>
+            
+            <div class="change-erp-product-price-popup" *ngSwitchCase=2 >                  
+                <div class="modal-header">
+                    <button class="modal-close-btn " (click)="productMappingModalToggle()">
+                        x
+                    </button>
+                    <div>
+                        Change Price
+                    </div>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-content-header">
+                        <div class="modal-content-product-title">
+                            {{mainProductData.product_name}}
+                        </div>
+                        <div class="modal-content-product-sku">
+                           <span>SKU: </span> 
+                           <span>{{mainProductData.sku}}</span>                        
+                        </div>
+                    </div>
+                    <div class="modal-content-main data_filter">
+                        <div class="existing-price-wrap">
+                            <div class="existing-price-label">
+                                Existing Price
+                            </div>
+                            <mat-form-field class="existing-price">
+                                <!-- <mat-label>Telephone</mat-label> -->
+                                <span class="mat-prefix" matPrefix>£ &nbsp;</span>
+                                <input type="text" matInput  [(ngModel)]="mainProductData.price" readonly>                    
+                            </mat-form-field>
+                        </div>
+                       <div class="new-price-wrap">
+                            <div class="new-price-label">
+                                New Price
+                            </div>
+                            <mat-form-field class="new price">                           
+                                <!-- <mat-label>Telephone</mat-label> -->
+                                <span class="mat-prefix" matPrefix>£ &nbsp;</span>
+                                <input type="text" matInput  [(ngModel)]="ErpProducWithtNewPrice">                    
+                            </mat-form-field>
+                       </div>
+                        
+                    </div>
+                </div>
+                <div class="modal-button-wrap">
+                    <button type="button" (click)="changeProductPrice(ErpProducWithtNewPrice)">
+                        Submit
+                    </button>
+                </div>
+                
+            </div>
+            <div *ngSwitchDefault>
+                <div class="modal-header">
+                    <button class="modal-close-btn " (click)="productMappingModalToggle()">
+                        x
+                    </button>
+                    <div>
+                        no result
+                    </div>
+                </div>
+                <div class="modal-content">
+                    no result
+                </div>
+                <div class="modal-button-wrap">
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal_backdrop" (click)="productMappingModalToggle()"></div>
+</div>

@@ -1,0 +1,71 @@
+
+  
+<div class="modal-wrap vendor-products-import-modal" *ngIf="importModalStatus"> 
+
+    <div class="modal-main product-import-modal">
+        <div class="modals-wrap upload-file-content"  *ngIf="importModalStatus && productUploadedStatus.length < 1">
+            <div class="modal-header">                       
+                <div>CSV Upload </div>
+                <button class="modal-close-btn " (click)="importModalToggle()">x</button>
+            </div>
+            <div class="modal-content">
+                <div class="import-file-intructions">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path opacity="0.2" d="M9.82108 18.8867C14.8279 18.8867 18.8867 14.8279 18.8867 9.82109C18.8867 4.8143 14.8279 0.755501 9.82108 0.755501C4.8143 0.755501 0.755493 4.8143 0.755493 9.82109C0.755493 14.8279 4.8143 18.8867 9.82108 18.8867Z" fill="#65755E"/>
+                        <path d="M9.82106 0C7.87864 0 5.97984 0.575995 4.36477 1.65515C2.74971 2.7343 1.49092 4.26814 0.747588 6.0627C0.00425531 7.85727 -0.190234 9.83195 0.188713 11.7371C0.567661 13.6421 1.50303 15.3921 2.87653 16.7656C4.25003 18.1391 5.99997 19.0745 7.90507 19.4534C9.81017 19.8324 11.7849 19.6379 13.5794 18.8945C15.374 18.1512 16.9078 16.8924 17.987 15.2773C19.0661 13.6623 19.6421 11.7635 19.6421 9.82106C19.6392 7.21726 18.6035 4.72094 16.7623 2.87978C14.9212 1.03861 12.4249 0.00294705 9.82106 0ZM9.82106 18.1312C8.17747 18.1312 6.5708 17.6438 5.2042 16.7307C3.83761 15.8175 2.77248 14.5197 2.14351 13.0012C1.51453 11.4827 1.34996 9.81184 1.67061 8.19983C1.99126 6.58783 2.78272 5.1071 3.94492 3.94491C5.10711 2.78272 6.58783 1.99126 8.19984 1.67061C9.81184 1.34996 11.4827 1.51453 13.0012 2.1435C14.5197 2.77248 15.8176 3.83761 16.7307 5.2042C17.6438 6.57079 18.1312 8.17747 18.1312 9.82106C18.1287 12.0243 17.2524 14.1365 15.6945 15.6945C14.1365 17.2524 12.0243 18.1287 9.82106 18.1312ZM8.68786 5.66603C8.68786 5.4419 8.75432 5.22281 8.87884 5.03646C9.00336 4.8501 9.18034 4.70486 9.38741 4.61909C9.59447 4.53332 9.82232 4.51088 10.0421 4.55461C10.262 4.59833 10.4639 4.70626 10.6224 4.86474C10.7808 5.02322 10.8888 5.22513 10.9325 5.44495C10.9762 5.66477 10.9538 5.89262 10.868 6.09969C10.7822 6.30675 10.637 6.48373 10.4506 6.60825C10.2643 6.73277 10.0452 6.79923 9.82106 6.79923C9.52052 6.79923 9.23229 6.67984 9.01977 6.46732C8.80725 6.25481 8.68786 5.96657 8.68786 5.66603ZM11.332 14.3539C11.332 14.5542 11.2524 14.7464 11.1107 14.888C10.969 15.0297 10.7769 15.1093 10.5765 15.1093H9.82106C9.6207 15.1093 9.42855 15.0297 9.28688 14.888C9.1452 14.7464 9.06561 14.5542 9.0656 14.3539V9.82106C8.86523 9.82106 8.67308 9.74146 8.5314 9.59979C8.38972 9.45811 8.31013 9.26595 8.31013 9.06559C8.31013 8.86523 8.38972 8.67307 8.5314 8.5314C8.67308 8.38972 8.86523 8.31013 9.0656 8.31013H9.82106C10.0214 8.31014 10.2136 8.38973 10.3552 8.53141C10.4969 8.67308 10.5765 8.86523 10.5765 9.06559V13.5984C10.7769 13.5984 10.969 13.678 11.1107 13.8197C11.2524 13.9613 11.332 14.1535 11.332 14.3539Z" fill="#65755E"/>
+                    </svg>
+                    <div>
+                        Your CSV file must contain a header line with a least Product Name, Price etc. columns
+                    </div>
+                </div>
+                <form #addProductsForm="ngForm" (ngSubmit)="uploadProducts(addProductsForm)">
+                    <label for="import_vendor_products" class="drop-file-container">
+                        <div class="drop-import-file">Drop your file here</div>
+                        <div class="import-file-or-text">OR</div>
+                        <div class="select-import-file">Select a file to upload</div>
+                        <div class="selected-file-name" *ngIf="selectedFilepath.length > 1"> 
+                            <span class="selected-file-head">
+                                Selected File :
+                            </span>
+                            <span class="selected-file-value">
+                                {{ selectedFilepath.split('\\').pop() }}
+                            </span>
+                           
+                        </div>
+                        <div class="import-max-file-size">Maximum file size: 5 MB</div>
+                    </label>
+                    <input id="import_vendor_products" type="file" style="visibility: hidden; display: none" name="import_products" (change)="onFileSelected($event)" [(ngModel)]="selectedFilepath" accept=".csv">                  
+                    
+                    <div class="download-sample-csv"><button type="button">Download Sample CSV</button></div>
+                    <button class="import-product-btn" type="submit">Import CSV</button>
+                </form>
+                <div>
+
+                </div>
+            </div>           
+        </div>
+        <div class="modals-wrap uploaded-file-status"  *ngIf="importModalStatus && productUploadedStatus.length >= 1">
+            <div class="modal-header">                       
+                <button class="modal-close-btn" (click)="importModalToggle()">x</button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-succes-img-wrap">
+                    <img src="assets\images\success_iocn.svg" alt="sucess_icon" />
+                </div>
+                 <div class="import-success-message">{{productUploadedStatus}}</div>
+                 <div class="total-imported-products">
+                    <div>
+                        Total no. of products uploaded
+                    </div>
+                    <div>
+                        50
+                    </div>
+                 </div>
+                 <div class="view-impoted-products-btn" >
+                    <button type="button" (click)="importModalToggle()">View Products</button>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal_backdrop" (click)="importModalToggle()"></div>
+</div>

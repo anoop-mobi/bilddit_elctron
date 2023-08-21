@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './shared/components';
 import { LoginComponent } from './shared/components/login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserAuthGuard } from './core/services/auth/auth.guard';
+import { ProductsComponent } from './products/products.component';
 
 
 
@@ -25,6 +26,16 @@ const routes: Routes = [
       import('./admin/admin.module').then(
         (m) => m.AdminModule
       ),
+
+  },
+  {
+    path: 'products',
+    component: ProductsComponent,
+    // canActivate: [UserAuthGuard],
+    // loadChildren: () =>
+    //   import('./admin/admin.module').then(
+    //     (m) => m.AdminModule
+    //   ),
 
   },
   {

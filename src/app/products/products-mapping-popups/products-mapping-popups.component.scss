@@ -1,0 +1,284 @@
+.products-mapping-pop-up{
+    display: flex;
+    .modals-wrap{
+        width: 100%;
+        
+    }
+
+    .modal-main{
+        padding-inline: 0;
+        max-width: 463px;
+        padding-block: 18px;
+        top: auto;
+        &:has(.map-non-erp-product-popup){
+            max-width: 680px;
+        }
+        &:has(.change-erp-product-price-popup){
+            max-width: 444px;
+        }
+    }
+    .modal-close-btn {
+        color: #333333;
+        height: 21px;
+        width: 23px;
+        top: 17px;
+    }
+    .modal-header {
+        display: block;
+        margin-bottom: 0px;
+        margin-inline: -3px;
+        padding-inline: 37px;
+        border-bottom: 1px solid #D2D2D2;
+        padding-bottom: 17px;
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0.18px;
+    }
+    .modal-content {
+        padding-inline: 37px;
+        margin-inline: -3px;
+        padding-block: 20px;
+        font-family: Montserrat;
+       
+    }
+  
+    .radio-option-product-img-title-wrap {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+    .radio-option-product-img {
+        max-width: 81px;
+        max-height: 81px;
+        height: 100%;
+        width: 100%;
+        padding: 21px 14px;
+        border-radius: 6px;
+        background: #F8F8F8;
+        border: 1px solid #F8F8F8;
+    }
+    .radio-option-product-title {
+        font-family: Montserrat;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        color: #333;
+        max-width: 182px;
+    }
+    .map-erp-product-popup{
+        .modal-content-header{
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 27.5px;
+            text-align: center;
+        }
+        .modal-search-wrap{
+            margin-block: 20px 40px;
+        }
+       
+    }
+    .modal-content {
+        overflow-y: auto;
+        max-height: 66vh;
+    }
+    .modal-content::-webkit-scrollbar-thumb
+    {
+        background-color:#ACACAC;
+        width: 6px;
+    }
+    .modal-content::-webkit-scrollbar {
+        width: 6px;
+        background: #EFEFEF;
+        border-radius: 10px;
+    }
+  
+    .modal-button-wrap button {
+        font-family: Montserrat;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.14px;
+        max-width: 190px;
+        width: 100%;
+        color: #fff;
+        border-radius: 60px;
+        background: #6ECB44;
+        padding: 12px 20px;
+        text-align: center;
+    }
+    .modal-button-wrap {
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+        border-top: 1px solid #D2D2D2;
+        margin-inline: -3px;
+    }
+    input::-webkit-search-cancel-button{
+        display: none;
+    }
+    .change-erp-product-price-popup  span.mat-prefix,
+    .non-erp-newly-mapped span.mat-prefix {
+            width: 38px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            border-radius: 5px 0px 0px 5px;
+            border-right: 1px solid #D2D2D2;
+            background: #EDEDED;
+            justify-content: center;
+            margin-right: 4px;
+    }
+    .change-erp-product-price-popup span.mat-prefix{
+        border-right:none;
+        margin-right: 0px;
+        width: auto;
+        padding-left: 10px;
+        background-color: inherit;
+    }
+    
+    .map-non-erp-product-popup{
+        .modal-content-header {
+            font-family: Montserrat;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 27.5px;
+            text-align: center;
+            max-width: 380px;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+        .mat-mdc-radio-button .mdc-form-field{
+            width: 100%;
+        }
+        .radio-option-title-input-grp{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+        }
+    }
+    .change-erp-product-price-popup{
+        .modal-content-main.data_filter {
+            display: flex;
+            gap: 28px;
+        }
+        .new-price-label,
+        .existing-price-label {
+            font-family: Montserrat;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 10px;
+            padding-bottom: 15px;
+        }
+        .modal-content-product-title {
+            font-family: Montserrat;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .modal-content-product-sku {
+            font-family: Montserrat;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 10px;
+            padding-bottom: 40px;
+            text-align: center;
+        }
+        .modal-button-wrap{
+            padding-inline: 57px;
+            button{
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        .modal-content{
+            padding-inline: 57px;
+        }
+    }
+    
+}
+
+@media screen and (max-width:767px) {
+    .products-mapping-pop-up{
+        .map-non-erp-product-popup
+        {   
+            .radio-option-title-input-grp{
+                flex-direction: column;
+                align-items: start;
+                gap: 15px;
+                max-width: 182px;
+            }
+        }
+        .modal-main{
+            &:has(.map-non-erp-product-popup){
+                max-width: 480px;
+            }
+        }
+        .radio-option-product-img-title-wrap{
+            justify-content: space-between;
+        }
+        .modal-content{
+            padding-inline: 25px;
+        }
+    }
+   
+}
+
+@media screen and (max-width:592px) {
+    .products-mapping-pop-up{
+       
+        .modal-main{
+            max-width: 400px;
+            &:has(.map-non-erp-product-popup){
+                max-width: 400px;
+            }
+        }
+    }
+}
+@media screen and (max-width:492px) {
+    .products-mapping-pop-up{
+        .modal-main{
+            max-width: 330px;
+            &:has(.map-non-erp-product-popup){
+                max-width: 330px;
+            }
+            &:has(.change-erp-product-price-popup){
+                max-width: 330px;
+            }
+        }
+        .modal-content{
+            padding-inline: 15px;
+        }
+        .radio-option-product-img-title-wrap{
+              gap: 15px;
+              margin-left: 10px;
+        }
+        .modal-header{
+            font-size: 15px;
+        }
+  
+        .map-erp-product-popup,
+        .map-non-erp-product-popup{
+            .modal-content-header{
+                font-size: 14px;
+                line-height: 20px;
+            
+            }
+        }
+    }
+}

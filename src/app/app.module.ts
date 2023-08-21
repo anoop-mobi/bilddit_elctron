@@ -13,6 +13,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './core/services/auth/auth.interceptor';
+import { ProductsModule } from './products/products.module';
 
 // AoT requires an exported function for factories
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -26,6 +27,7 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
     CoreModule,
     SharedModule,
     AppRoutingModule,
+    ProductsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -1,0 +1,93 @@
+<p>merchant-product-mapping works!</p>
+
+<div class="vendor-product-mapping-wrap" >
+    <div class="vendor-product-mapping-wrap-body">
+        <div class="vendor-product-mapping-header">
+            <div class="vendor-product-mapping-header-content">
+              <div class="vendor-product-mapping-header-text">
+                Review Mapping
+              </div>
+              <div class="vendor-product-mapping-vendor-name">
+                <span>Vendor Name: </span>
+                <span>Richard George </span>       
+              </div>
+            </div>
+            <div class="vendor-product-mapping-filter-wrap">
+                <div class="data_filter">
+                  <div  class="vendor-product-mapping-search-filter">
+                    <mat-form-field>
+                      <mat-label>Search</mat-label>
+                      <input type="search" #filterKeyword matInput placeholder="Search">
+                      <mat-icon matSuffix>
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g id="&#240;&#159;&#166;&#134; icon &#34;magnifying glass&#34;">
+                            <path id="Vector"
+                              d="M17.8444 17.0972L13.9195 13.1723C15.2764 11.6215 15.9775 9.60407 15.8747 7.54601C15.7719 5.48796 14.8732 3.55043 13.3685 2.14261C11.8638 0.734785 9.87079 -0.0331093 7.81046 0.00109556C5.75012 0.0353004 3.78373 0.868927 2.32657 2.32592C0.869407 3.78291 0.0355537 5.74921 0.00111085 7.80954C-0.033332 9.86987 0.734332 11.8629 2.14198 13.3678C3.54963 14.8727 5.48706 15.7716 7.5451 15.8746C9.60314 15.9777 11.6207 15.2769 13.1716 13.9201L17.0966 17.8451C17.1958 17.9443 17.3303 18 17.4706 18C17.6108 18 17.7453 17.9443 17.8445 17.8451C17.9437 17.7459 17.9994 17.6114 17.9994 17.4712C17.9993 17.3309 17.9436 17.1964 17.8444 17.0972ZM1.07702 7.95199C1.07702 6.59225 1.48023 5.26306 2.23566 4.13248C2.99108 3.00191 4.0648 2.12074 5.32102 1.60039C6.57725 1.08004 7.95957 0.943897 9.29317 1.20917C10.6268 1.47444 11.8518 2.12921 12.8132 3.09068C13.7747 4.05216 14.4295 5.27715 14.6948 6.61075C14.96 7.94436 14.8239 9.32668 14.3035 10.5829C13.7832 11.8391 12.902 12.9128 11.7714 13.6683C10.6409 14.4237 9.31167 14.8269 7.95194 14.8269C6.12923 14.8248 4.38176 14.0999 3.09291 12.811C1.80406 11.5222 1.07908 9.7747 1.07702 7.95199Z"
+                              fill="#979797" />
+                          </g>
+                        </svg>
+                      </mat-icon>
+                    </mat-form-field>
+                  </div>
+                  
+                </div>
+            </div>
+          </div>
+          <div class="vendor-product-mapping-seperator"></div>
+          <div class="vendor-product-mapping-table">
+            <table mat-table [dataSource]="vendorMappedItems">
+            <ng-container matColumnDef="product_name">
+                <th mat-header-cell *matHeaderCellDef>Bilddit Products</th>
+                <td  mat-cell *matCellDef="let vendorMappedItem" data-label="Bilddit Products">
+                  <div  class="vendor-bilddit-product-img-name-grp">
+                    <div class="vendor-bilddit-product-img"> <img src="/assets/images/product-image.jpg"></div>
+                    <div  class="vendor-bilddit-product-title">{{vendorMappedItem.product_name}}</div>
+                  </div>
+                </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="erp_product_name">
+                <th mat-header-cell *matHeaderCellDef>ERP Products</th>
+                <td mat-cell *matCellDef="let vendorMappedItem" data-label="ERP Products">
+                    <div  class="vendor-erp-product-img-name-grp">
+                      <div class="vendor-erp-product-img"> <img src="/assets/images/product-image.jpg"></div>
+                      <div class="vendor-erp-product-title">{{vendorMappedItem.erp_product_name}}</div> 
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let vendorMappedItem" data-label="Status"><span>{{vendorMappedItem.status? "Mapped":"Unmapped"}} </span></td>
+            </ng-container>
+            <ng-container matColumnDef="product_id">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let vendorMappedItem" data-label="Action"> 
+                  <div *ngIf="vendorMappedItem.status; else elseContent">
+                    <button class="epr-product-mapping-edit-btn" (click)="OpenMappingPopup(1)">
+                       <div> <img src="/assets/images/edit-icon.svg"> </div>
+                       <div>Edit</div>
+                    </button>
+                  </div>
+                  <ng-template #elseContent >
+                    <button class="epr-product-add-mapping-btn" (click)="OpenMappingPopup(0)">
+                      Add
+                    </button>
+                  </ng-template>
+            </ng-container>
+ 
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                {{tabelDataStatus}}
+                </td>
+            </tr>
+        
+            </table>
+          </div>
+    </div>
+      <!-- <a (click)="loadMore()">{{loadMoreText}}</a> -->
+</div>
+    
+    
+  <app-products-mapping-popups [popupFlag]=flagstatus></app-products-mapping-popups>
