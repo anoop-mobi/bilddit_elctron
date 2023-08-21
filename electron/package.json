@@ -8,6 +8,7 @@
   "version": "0.0.1",
   "main": "main.js",
   "private": true,
-  "dependencies": {
+  "devDependencies": {
+    "@types/auto-launch": "^5.0.2"
   }
 }

@@ -2,6 +2,12 @@ import {app, BrowserWindow, screen, Tray, Menu} from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
+const AutoLaunch = require('auto-launch');
+const appAutoLauncher = new AutoLaunch({
+  name: 'bilddit 0.0.1',
+  path: app.getPath('exe'),
+});
+
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
@@ -64,9 +70,15 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
+  app.setLoginItemSettings({
+    openAtLogin: true,
+    openAsHidden: true, // or false, depending on your preference
+  });
   app.on('ready', () => {
     setTimeout(createWindow, 400)
-    tray = new Tray('src/assets/icons/icon-72x72.png')
+    // tray = new Tray('src/assets/icons/icon-72x72.png')
+    tray = new Tray(path.join(__dirname, '../dist/assets/icons/icon-72x72.png'));
+
     const contextMenu = Menu.buildFromTemplate([
       
       { label: 'Add New Products' },
@@ -76,9 +88,9 @@ try {
       { label: 'Payouts' },
       { type: 'separator' },
       { label: 'Close Application',
-      click: () => {
-        app.quit();
-      },
+        click: () => {
+          app.quit();
+        },
       },
     ])
     tray.on('click', ()=>{
@@ -87,6 +99,9 @@ try {
     tray.setToolTip('Bilddit Application')
     tray.setContextMenu(contextMenu)
   });
+
+
+  // appAutoLauncher.enable();
 
   // Quit when all windows are closed.
 
