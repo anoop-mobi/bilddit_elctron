@@ -33,6 +33,10 @@ const routes: Routes = [
         path: 'products/:id',
        component:ProductsComponent,
       },
+      {
+        path: 'review-product-mapping/:id',
+       component:ProductsComponent,
+      },
     //   {
     //     path: ':id/products',
     //     component:VendorProductsComponent,

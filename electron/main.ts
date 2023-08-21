@@ -1,4 +1,4 @@
-import {app, BrowserWindow, screen} from 'electron';
+import {app, BrowserWindow, screen, Tray, Menu} from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -16,6 +16,7 @@ function createWindow(): BrowserWindow {
     y: 0,
     width: size.width,
     height: size.height,
+    minWidth:425,
     webPreferences: {
       nodeIntegration: true,
       // allowRunningInsecureContent: (serve),
@@ -23,6 +24,11 @@ function createWindow(): BrowserWindow {
     },
   });
 
+  win.on('close',(event)=>{
+    event.preventDefault();
+    win?.hide();
+  })
+  
   if (serve) {
     const debug = require('electron-debug');
     debug();
@@ -52,22 +58,45 @@ function createWindow(): BrowserWindow {
 
   return win;
 }
-
+let tray = null
 try {
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
-  app.on('ready', () => setTimeout(createWindow, 400));
+  app.on('ready', () => {
+    setTimeout(createWindow, 400)
+    tray = new Tray('src/assets/icons/icon-72x72.png')
+    const contextMenu = Menu.buildFromTemplate([
+      
+      { label: 'Add New Products' },
+      { label: 'Dashboard' },
+      { label: 'Merchants' },
+      { label: 'Orders' },
+      { label: 'Payouts' },
+      { type: 'separator' },
+      { label: 'Close Application',
+      click: () => {
+        app.quit();
+      },
+      },
+    ])
+    tray.on('click', ()=>{
+     win?.isVisible()?win.hide():win?.show();
+    })
+    tray.setToolTip('Bilddit Application')
+    tray.setContextMenu(contextMenu)
+  });
 
   // Quit when all windows are closed.
-  app.on('window-all-closed', () => {
-    // On OS X it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
-      app.quit();
-    }
-  });
+
+  // app.on('window-all-closed', () => {
+  //   // On OS X it is common for applications and their menu bar
+  //   // to stay active until the user quits explicitly with Cmd + Q
+  //   if (process.platform !== 'darwin') {
+  //     app.quit();
+  //   }
+  // });
 
   app.on('activate', () => {
     // On OS X it's common to re-create a window in the app when the
