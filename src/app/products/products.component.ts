@@ -6,7 +6,7 @@ import { ProductImportModalComponent } from './product-import-modal/product-impo
 import { ProductsMappingPopupsComponent } from './products-mapping-popups/products-mapping-popups.component';
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-products-main',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })

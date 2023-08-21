@@ -28,16 +28,16 @@ const routes: Routes = [
       ),
 
   },
-  {
-    path: 'products',
-    component: ProductsComponent,
-    // canActivate: [UserAuthGuard],
-    // loadChildren: () =>
-    //   import('./admin/admin.module').then(
-    //     (m) => m.AdminModule
-    //   ),
+  // {
+  //   path: 'products',
+  //   component: ProductsComponent,
+  //   // canActivate: [UserAuthGuard],
+  //   // loadChildren: () =>
+  //   //   import('./admin/admin.module').then(
+  //   //     (m) => m.AdminModule
+  //   //   ),
 
-  },
+  // },
   {
     path: '**',
     component: PageNotFoundComponent

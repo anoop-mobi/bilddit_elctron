@@ -17,6 +17,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MerchantDetailsComponent } from './merchant-details/merchant-details.component';
 import { MerchantUpdateComponent } from './merchant-update/merchant-update.component';
+import { ProductsComponent } from './products/products.component';
+import { RouterModule } from '@angular/router';
+import { ProductsModule } from '../../products/products.module';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { MerchantUpdateComponent } from './merchant-update/merchant-update.compo
     ListingComponent,
     AddMerchantComponent,
     MerchantDetailsComponent,
-    MerchantUpdateComponent
+    MerchantUpdateComponent,
+    ProductsComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +44,9 @@ import { MerchantUpdateComponent } from './merchant-update/merchant-update.compo
     MatSelectModule,
     FormsModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    RouterModule,
+    ProductsModule
   ]
 })
 export class MerchantsModule { }

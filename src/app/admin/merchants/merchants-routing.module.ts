@@ -4,6 +4,7 @@ import { ListingComponent } from './listing/listing.component';
 import { MerchantDetailsComponent } from './merchant-details/merchant-details.component';
 import { MerchantUpdateComponent } from './merchant-update/merchant-update.component';
 import { MerchantProductMappingComponent } from '../../products/merchant-product-mapping/merchant-product-mapping.component';
+import { ProductsComponent } from './products/products.component';
 // import { VendorUpdateComponent } from './vendor-update/vendor-update.component';
 // import { VendorProductsComponent } from './vendor-products/vendor-products.component';
 // import { VendorPayoutsComponent } from './vendor-payouts/vendor-payouts.component';
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'edit/:id',
        component:MerchantUpdateComponent,
+      },
+      {
+        path: 'products/:id',
+       component:ProductsComponent,
       },
     //   {
     //     path: ':id/products',

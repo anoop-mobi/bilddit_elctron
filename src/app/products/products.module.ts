@@ -31,6 +31,6 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     MatRadioModule,
     MatTableModule,
   ],
-  // exports: [ProductsComponent]
+  exports: [ProductsComponent]
 })
 export class ProductsModule { }
