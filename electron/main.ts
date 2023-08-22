@@ -1,4 +1,4 @@
-import {app, BrowserWindow, screen, Tray, Menu} from 'electron';
+import {app, BrowserWindow, screen, Tray, Menu, ipcMain, Notification} from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -72,7 +72,7 @@ try {
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
   app.setLoginItemSettings({
     openAtLogin: true,
-    openAsHidden: true, // or false, depending on your preference
+    openAsHidden: true, 
   });
   app.on('ready', () => {
     setTimeout(createWindow, 400)
@@ -98,6 +98,15 @@ try {
     })
     tray.setToolTip('Bilddit Application')
     tray.setContextMenu(contextMenu)
+  });
+
+  ipcMain.on('show-notification', (event, args) => {
+    const notification = new Notification({
+      title: args.title,
+      body: args.body,
+      icon: path.join(__dirname, '../dist/assets/icons/icon-72x72.png'),
+    });
+    notification.show();
   });
 
 

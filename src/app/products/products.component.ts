@@ -11,45 +11,44 @@ import { ProductsMappingPopupsComponent } from './products-mapping-popups/produc
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
+  @ViewChild(ProductsMappingPopupsComponent) productMappingPopupsComponent!: ProductsMappingPopupsComponent;
+  @ViewChild(ProductImportModalComponent) productImportModalComponent!: ProductImportModalComponent;
 
-  @ViewChild(ProductsMappingPopupsComponent) productMappingPopupsComponent!:ProductsMappingPopupsComponent;
-  @ViewChild (ProductImportModalComponent) productImportModalComponent! :ProductImportModalComponent
-  openImportModal(){
-  this.productImportModalComponent.importModalToggle();
-  }
-  
   @Input() routerURL: string = '';
-  // productUploadedStatus:string = '';
-  flagstatus!:number;
-  constructor(public products:ProductsService){}
-  OpenMappingPopup(flagstatus:number){
-    this.productMappingPopupsComponent.productMappingModalToggle()
-    this.flagstatus=flagstatus;
-  }
+  flagstatus!: number;
+
   productStatus: string[] = ['Selling', 'Not Selling', 'Mapped', 'Unmapped'];
-  ProductItems:VendorProductItem[] = [] 
+  ProductItems: VendorProductItem[] = [];
 
   payload: any = {
     keyword: '',
-    status:this.productStatus
+    status: this.productStatus
   };
 
-  getProducts(){
-    let id = '2'
-    this.products.getVendorProducts(id).subscribe((data:any)=>{
-      // console.log(data.body.result.data);
-      this.ProductItems = data.body.result.data
-      
-    })
+  constructor(public products: ProductsService) { }
+
+  openImportModal() {
+    this.productImportModalComponent.importModalToggle();
   }
 
+  OpenMappingPopup(flagstatus: number) {
+    this.productMappingPopupsComponent.productMappingModalToggle();
+    this.flagstatus = flagstatus;
+  }
 
-  getMasterProductCSV(){
-    this.products.exportMasterSheet().subscribe((data:any)=>{
+  getProducts() {
+    console.clear()
+    this.products.getVendorProducts('2').subscribe((data: any) => {
+      this.ProductItems = data.body.result.data;
+      console.log(data)
+    });
+  }
+
+  getMasterProductCSV() {
+    this.products.exportMasterSheet().subscribe((data: any) => {
       console.log(data.result);
       return new ngxCsv(data.result, 'My Report');
-
-    })
+    });
   }
 
   ngOnInit(): void {

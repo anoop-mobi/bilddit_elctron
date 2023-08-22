@@ -12,7 +12,7 @@
             </svg>
           </button>
           <mat-menu #notification="matMenu" yPosition="above">
-            <button mat-menu-item>New notification</button>
+            <button mat-menu-item (click)="sendNotification()">New notification</button>
             <button mat-menu-item>Older notification</button>
           </mat-menu>
         </li>

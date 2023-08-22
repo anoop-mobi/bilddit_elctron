@@ -36,6 +36,12 @@ export class ElectronService {
         console.log(`stdout:\n${stdout}`);
       });
 
+
+      // ipcRenderer.send('show-notification',{
+      //   title: "test",
+      //   body: "test"
+      // })
+
       // Notes :
       // * A NodeJS's dependency imported with 'window.require' MUST BE present in `dependencies` of both `app/package.json`
       // and `package.json (root folder)` in order to make it work here in Electron's Renderer process (src folder)
@@ -48,6 +54,10 @@ export class ElectronService {
       // ipcRenderer.invoke can serve many common use cases.
       // https://www.electronjs.org/docs/latest/api/ipc-renderer#ipcrendererinvokechannel-args
     }
+  }
+
+  sendNotes(title:string, body:string, event?:string){
+    this.ipcRenderer.send('show-notification', { title: title, body: body, icon: 'icon.png' });
   }
 
   get isElectron(): boolean {

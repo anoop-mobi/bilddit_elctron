@@ -5,6 +5,7 @@ import { MerchantDetailsComponent } from './merchant-details/merchant-details.co
 import { MerchantUpdateComponent } from './merchant-update/merchant-update.component';
 import { MerchantProductMappingComponent } from '../../products/merchant-product-mapping/merchant-product-mapping.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductDetailComponent } from '../../products/product-detail/product-detail.component';
 // import { VendorUpdateComponent } from './vendor-update/vendor-update.component';
 // import { VendorProductsComponent } from './vendor-products/vendor-products.component';
 // import { VendorPayoutsComponent } from './vendor-payouts/vendor-payouts.component';
@@ -35,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'review-product-mapping/:id',
-       component:ProductsComponent,
+       component:MerchantProductMappingComponent,
       },
     //   {
     //     path: ':id/products',

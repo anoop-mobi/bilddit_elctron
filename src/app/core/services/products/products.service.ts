@@ -13,7 +13,7 @@ export class ProductsService {
   getVendorProducts(vendorId:string){
     const url = api.URL + '/api/vendor-product-request-list';
     const payload = {
-      id:vendorId
+      vendor_id:vendorId
     }
     let dataPayload = this.http.post(
       url,

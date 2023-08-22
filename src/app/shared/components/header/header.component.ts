@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import { ElectronService } from '../../../core/services';
 
 @Component({
   selector: 'app-header',
@@ -29,7 +30,8 @@ export class HeaderComponent {
   constructor
     (
       private auth: AuthService,
-      private _el: ElementRef
+      private _el: ElementRef,
+      private electron:ElectronService
     ) { }
   ngOnInit(): void {
     if (localStorage.getItem('token') && localStorage.getItem('userData')) {
@@ -48,5 +50,11 @@ export class HeaderComponent {
   closeInstallApp(){
     this.installApp = false;
     localStorage.setItem("installApp",'false')
+  }
+
+
+  sendNotification(){
+    console.log('test');
+    this.electron.sendNotes("Bilddit Notification","Bilddit Notification Testing")
   }
 }
