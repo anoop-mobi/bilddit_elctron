@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     PageNotFoundComponent, 
@@ -25,14 +26,16 @@ import { MatMenuModule } from '@angular/material/menu';
     FormsModule,
     MatInputModule,
     MatMenuModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule
   ],
   exports: [
     TranslateModule, 
     WebviewDirective, 
     FormsModule, 
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    
   ]
 })
 export class SharedModule {}
