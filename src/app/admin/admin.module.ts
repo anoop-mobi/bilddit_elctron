@@ -11,21 +11,16 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
-import { OrdersComponent } from './orders/orders.component';
 import { PayoutsComponent } from './payouts/payouts.component';
 import { MerchantsModule } from './merchants/merchants.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     DashboardComponent,
     NavigationComponent,
-    OrdersComponent,
     PayoutsComponent,
-    OrderDetailComponent,
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './products.component';
 import { ProductImportModalComponent } from './product-import-modal/product-import-modal.component';
@@ -12,6 +12,11 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 
+import {MatExpansionModule} from '@angular/material/expansion';
+import { register } from 'swiper/element/bundle';
+
+
+register();
 
 
 @NgModule({
@@ -30,7 +35,10 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     RouterModule,
     MatRadioModule,
     MatTableModule,
+    MatExpansionModule,
+   
   ],
-  exports: [ProductsComponent]
+  exports: [ProductsComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProductsModule { }

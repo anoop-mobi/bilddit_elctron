@@ -1,0 +1,151 @@
+<div class="order-request-detail-wrap">
+    <div class="order-request-detail-header">
+        <div class="order-request-detail-title">
+            Order Details
+        </div>
+        <div class="order-request-detail-back-btn">
+            <a routerLink="../../">
+                <span class="back-btn-svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="16" viewBox="0 0 11 16" fill="none">
+                        <path d="M10.3334 1L2.00004 7.81818L10.3334 14.5" stroke="#68B546" stroke-width="1.3"/>
+                    </svg>
+                </span> 
+                <span>Back</span>
+            </a>
+            
+        </div>
+    </div>
+    <div class="order-request-detail-table">
+        <div class="order-no-recieved-wrap"> 
+            <div class="order-no">
+               <span class="order-no-head">
+                     Order No.
+               </span> 
+               <span  class="order-no-value">
+                     #1234
+               </span>
+            </div>
+            <div class="order-recieved-time">
+                Received 3 mins ago
+            </div>
+        </div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                                    [checked]="selection.hasValue() && isAllSelected()"
+                                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                >
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                    (change)="$event ? selection.toggle(row) : null"
+                                    [checked]="selection.isSelected(row)"
+                                >
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="product">
+                <th mat-header-cell *matHeaderCellDef>Products</th>
+                <td mat-cell *matCellDef="let element"> 
+                    <div class="order-product-wrap">
+                        <div class="order-product-img-wrap">
+                            <img src= {{element.orderProductImage}} />
+                        </div>
+                        <div class="oder-product-detail-wrap">
+                            <div class="order-product-title">
+                                {{element.orderProductTitle}}
+                            </div>
+                            <div class="order-product-price">
+                                {{element.orderProductPrice | currency: 'GBP'}}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef>Quantity</th>
+                <td mat-cell *matCellDef="let element"> {{element.orderProductQty}} </td>
+            </ng-container>
+            
+    
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Price</th>
+                <td mat-cell *matCellDef="let element"> {{element.orderProductTotalPrice | currency:'GBP'}} </td>
+            </ng-container>
+            <!-- Footer Row Data -->
+            <ng-container matColumnDef="ftotalprice">
+                <td class="footer-total-price-head"  mat-footer-cell *matFooterCellDef colspan="2">
+                    Order Total
+                </td>  
+            </ng-container>
+            <ng-container matColumnDef="ftotalqty">
+                <td class="footer-total-qty" mat-footer-cell *matFooterCellDef >
+                    6
+                </td>  
+            </ng-container>
+            <ng-container matColumnDef="ftotalpricevalue">
+                <td class="footer-total-price-value" mat-footer-cell *matFooterCellDef >
+                    {{774 | currency:'GBP'}}
+                </td>  
+            </ng-container>
+
+            <ng-container matColumnDef="fvathead">
+                <td class="footer-vat-head" mat-footer-cell *matFooterCellDef   colspan="3">
+                    VAT (20%)
+                </td>  
+            </ng-container>
+            <ng-container matColumnDef="fvatvalue">
+                <td class="footer-vat-value"  mat-footer-cell *matFooterCellDef  colspan="1" >
+                    {{ 40 | currency:'GBP'}}
+                </td>  
+            </ng-container>
+
+            <ng-container matColumnDef="fgrandtotalhead">
+                <td class="footer-grand-total-head" mat-footer-cell *matFooterCellDef   colspan="3">
+                    Grand Total
+                </td>  
+            </ng-container>
+            <ng-container matColumnDef="fgrandtotalvalue">
+                <td class="footer-grand-total-value"  mat-footer-cell *matFooterCellDef  colspan="1" >
+                    {{ 814 | currency:'GBP'}}
+                </td>  
+            </ng-container>
+            <ng-container matColumnDef="facceptrejectbtn">
+                <td class="footer-accept-reject-btn"  mat-footer-cell *matFooterCellDef  colspan="4" >
+                   <div class="footer-accept-reject-btn-wrap">
+                        <button type="button" class="order-footer-accept-btn">
+                            Accept
+                        </button>
+                        <button type="button" class="order-footer-reject-btn">
+                            Reject
+                        </button>
+                   </div>
+                </td>  
+            </ng-container>
+
+           
+    
+            <!-- Footer Row Data -->   
+        
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="selection.toggle(row)">
+            </tr>
+             <!-- Footer Rows -->
+            <tr mat-footer-row *matFooterRowDef="['ftotalprice', 'ftotalqty', 'ftotalpricevalue']" class="order-total-row"></tr>
+            <tr mat-footer-row *matFooterRowDef="['fvathead', 'fvatvalue']" class="order-vat-row"></tr>
+            <tr mat-footer-row *matFooterRowDef="['fgrandtotalhead', 'fgrandtotalvalue']" class="order-vat-row"></tr>
+            <tr mat-footer-row *matFooterRowDef="['facceptrejectbtn']" class="order-accept-reject-btn"></tr>
+            <!-- Footer Rows -->
+        </table>
+    </div>
+    
+</div>
+
+
+  

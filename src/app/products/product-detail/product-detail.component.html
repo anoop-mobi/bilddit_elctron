@@ -1,24 +1,76 @@
 <div class="product-detail-wrap">
     <div class="product-img-slider-wrap">
        <div class="product-img-slider">
-        <!-- <ngx-slick-carousel class="carousel" 
-            #slickModal="slick-carousel" 
-            [config]="slideConfig" 
-            (init)="slickInit($event)"
-            (breakpoint)="breakpoint($event)"
-            (afterChange)="afterChange($event)"
-            (beforeChange)="beforeChange($event)"
-         > -->
-            <div ngxSlickItem class="product-img" *ngFor="let slide of slides">
-                <img  src="{{ slide.img }}" />
-            </div>
-            
-        <!-- </ngx-slick-carousel> -->
+            <swiper-container navigation="true" pagination-clickable="true" slide-per-view="1"  >
+                <swiper-slide *ngFor="let slide of slides">
+                    <div class="product-img" >
+                        <img  src="{{ slide.img }}" />
+                    </div>
+                 </swiper-slide>
+            </swiper-container>
        </div> 
     </div>
     <div class="product-detail-body-wrap">
         <div class="product-title">
             Brass Basin Mixer Tap  Aquant
+        </div>
+        <div class="product-sku">
+            <span>
+                SKU:
+            </span>
+            <span>
+                75387584
+            </span>
+        </div>
+        <div class="product-price">
+            {{129.00 | currency:"GBP" }}
+        </div>
+        <div class="expansion-panel-grp">
+            <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       <div class="summary">
+                        Description
+                       </div> 
+                    </mat-panel-title>
+                
+                </mat-expansion-panel-header>
+                <p class="detail">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                      It has survived not only five centuries, but also the leap into electronic typesetting, remaining 
+                      essentially unchanged.
+                </p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       <div class="summary">
+                        Technical Specifications
+                       </div> 
+                    </mat-panel-title>
+                
+                </mat-expansion-panel-header>
+                <p class="detail">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                      It has survived not only five centuries, but also the leap into electronic typesetting, remaining 
+                      essentially unchanged.
+                </p>
+            </mat-expansion-panel>
+        </div>
+        <div class="product-btn-group">
+            <button class="sell-product-btn" type="button">
+                Sell This Product
+            </button>
+            <button class="price-change-request" type="button">
+                Price Change Request 
+            </button>
         </div>
     </div>
 </div>

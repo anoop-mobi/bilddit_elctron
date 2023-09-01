@@ -6,24 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent {
-  slideConfig = { slidesToShow: 1, slidesToScroll: 1, dots: true };
 
+  panelOpenState = false;
   slides = [
     { img: 'assets/images/product_img.png' },
     { img: 'assets/images/product_img.png' },
     { img: 'assets/images/product_img.png' },
 
   ];
-  slickInit(e: any) {
-    console.log('slick initialized');
-  }
-  breakpoint(e: any) {
-    console.log('breakpoint');
-  }
-  afterChange(e: any) {
-    console.log('afterChange');
-  }
-  beforeChange(e: any) {
-    console.log('beforeChange');
-  }
 }

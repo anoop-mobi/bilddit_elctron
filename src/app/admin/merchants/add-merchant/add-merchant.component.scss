@@ -1,0 +1,73 @@
+.add-vendor-modal{
+    .mat-mdc-select-arrow-wrapper {
+        height: 12px;
+        width: 12px;
+        background: url(/assets/images/select-arrow.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: none;
+    }
+    .mat-mdc-select-arrow svg {
+        display: none;
+    }
+    .modal-header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 2;
+        padding-top: 10px;
+    }
+    &.modal-xl .modal-main{
+        overflow-y: auto;
+        height: 90vh;
+        overflow-x: hidden;
+        top: auto;
+        padding-top: 0;
+    }
+    &.modal-wrap{
+        display: flex;
+    }
+    &.modal-xl .modal-main::-webkit-scrollbar-thumb
+    {
+        background-color:#ACACAC;
+        width: 5px;
+        border-radius: 30px;
+    }
+    &.modal-xl .modal-main::-webkit-scrollbar {
+        width: 5px;
+        background: #EFEFEF;
+        border-radius: 10px;
+        border-radius: 30px;
+    }
+}
+
+@media screen and  (max-width:767px )  {
+    .modal-xl .modal-main {
+        max-width: 460px;
+    }
+   
+    .customised-form .separator-row .customised-form-heading {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .same_address_check {
+        margin-left: -10px;
+    }
+    .customised-form .separator-row{
+        display: block;
+    }
+}
+@media screen and  (max-width:492px )  {
+
+    .customised-form .separator-row .customised-form-heading {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .modal-xl .modal-main{
+        max-width: 330px;
+        height: 80vh;
+    }
+
+   
+}

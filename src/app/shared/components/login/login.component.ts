@@ -36,12 +36,12 @@ export class LoginComponent {
       if (localStorage.getItem('roleId') === '1' && localStorage.getItem('role') == 'Administrator') {
         this.route.navigate(['admin'])
       } else if (localStorage.getItem('roleId') === '2' && localStorage.getItem('role') == 'Vendor') {
-        this.route.navigate(['vendor-dashboard'])
+        this.route.navigate(['vendor'])
       }
 
     }
   }
-
+  loadingClass = false
   userLogin(email: string, password: string) {
     if(!email  && !password){
       this.loginError = true
@@ -49,7 +49,8 @@ export class LoginComponent {
     }
     this.loginError = false
     this.modalStatus = true;
-    this.logginMSG = 'loading...'
+    this.logginMSG = 'Loading...'
+    this.loadingClass = true;
     this.authse.userLogin(email, password).subscribe((response: any) => {
       const apiResponse = response;
       console.log(apiResponse)

@@ -12,12 +12,13 @@ import { LoginComponent } from './components/login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 @NgModule({
   declarations: [
     PageNotFoundComponent, 
     WebviewDirective, 
     HeaderComponent, 
-    LoginComponent
+    LoginComponent, ChangePasswordComponent
   ],
 
   imports: [

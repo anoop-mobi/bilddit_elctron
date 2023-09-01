@@ -5,6 +5,9 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserAuthGuard } from './core/services/auth/auth.guard';
 import { ProductsComponent } from './products/products.component';
+import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
+import { VendorComponent } from './vendor/vendor.component';
+import { vendorAuthGuard } from './core/services/auth/vendor-auth.guard';
 
 
 
@@ -28,6 +31,15 @@ const routes: Routes = [
       ),
 
   },
+  {
+    path: 'vendor',
+    component: VendorComponent,
+    canActivate: [vendorAuthGuard],
+    loadChildren: () =>
+      import('./vendor/vendor.module').then(
+        (m) => m.VendorModule
+      ),
+  },
   // {
   //   path: 'products',
   //   component: ProductsComponent,
@@ -38,6 +50,10 @@ const routes: Routes = [
   //   //   ),
 
   // },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent
+  },
   {
     path: '**',
     component: PageNotFoundComponent

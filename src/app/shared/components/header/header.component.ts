@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, effect } from '@angular/core';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { ElectronService } from '../../../core/services';
 
@@ -24,15 +24,26 @@ export class HeaderComponent {
    
   }
 
-
-  loggedIn = this.auth.getLoginStats();
+  loggedIn?:boolean;
   installApp:boolean = true;
   constructor
     (
       private auth: AuthService,
       private _el: ElementRef,
-      private electron:ElectronService
-    ) { }
+      private electron:ElectronService,
+    ) { 
+      
+      effect(() => {
+        if(this.auth.userLoginStatus()){
+          this.loggedIn = true
+        } else {
+          this.loggedIn = false
+        }
+      });
+    }
+
+
+    
   ngOnInit(): void {
     if (localStorage.getItem('token') && localStorage.getItem('userData')) {
       // this.loggedIn = true;

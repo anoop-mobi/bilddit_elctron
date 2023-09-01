@@ -242,3 +242,19 @@
     
     
 }
+
+@media  screen and (max-width:492px) {
+    .vendor-detail{
+        &-grp{
+
+        }
+        &-label{
+            font-size: 10px;
+            line-height: 16px;
+        }
+        &-value{
+            font-size: 12px;
+            line-height: 18px;
+        }
+    }
+}

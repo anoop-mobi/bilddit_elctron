@@ -35,34 +35,35 @@ export class AddMerchantComponent {
   }
   modalStatus: boolean = false;
   sameAddressCheck: boolean = true;
-  vendorLocations: any[] = [];
   countries: any[] = []
   states: any[] = []
   cities: any[] = []
   vendor: any = {
-    register_city_id:'0',
-    trading_city_id:'0',
-    state_id:'0',
-    city_id:'0',
-    address_line1:"0",
-    trading_state_id:255,
-    register_country_id:255,
-    trading_country_id:255,
+    register_city_id: '0',
+    trading_city_id: '0',
+    state_id: '0',
+    city_id: '0',
+    address_line1: "0",
+    trading_state_id: 255,
+    register_country_id: 255,
+    trading_country_id: 255,
     latitude: '',
     longitude: '',
-    email_notification:[]
+    email_notification: []
   } // add vendor form object
   emailForm: FormGroup;
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   EmailList: Emails[] = [  /* { email: 'test@test.com' } */];
-  formStatus:string = ''
-
+  formStatus: string = ''
+  register_address_line1 = '';
+  trading_address_line1 = ''
   modalToggle() {
     if (this.modalStatus == false) {
       this._AddressLoaderService.loadGoogleMapsScript().then(() => {
-        this.initialize(this.registrationStreetAddress, 1);
-        this.initialize(this.tradingAddress, 2);
+        // register_address_line1, trading_address_line1
+        this.initializeGoogleMap(this.registrationStreetAddress, 1, 'register_address_line1');
+        this.initializeGoogleMap(this.tradingAddress, 2, "trading_address_line1");
       }).catch((error: any) => {
         console.error(error);
       });
@@ -103,15 +104,18 @@ export class AddMerchantComponent {
   }
 
   submitForm(form: any) {
+    if (!this.register_address_line1 && !this.trading_address_line1) {
+      this.formStatus = 'Please Enter Valid Address. (Select From given list)'
+      return
+    }
+    this.vendor.register_address_line1 = this.register_address_line1
+    this.vendor.trading_address_line1 = this.trading_address_line1
     if (form.valid) {
       // console.log(JSON.stringify(form.value)); // Handle form submission here
-       this.EmailList.map((item)=>{
+      this.EmailList.map((item) => {
         this.vendor.email_notification.push(item.email)
       });
-      
-      
-      this._AddMerchantService.createVendors(this.vendor).subscribe((data:any) => {
-        console.log(data.body);
+      this._AddMerchantService.createVendors(this.vendor).subscribe((data: any) => {
         this.formStatus = data.body.message
       })
     }
@@ -126,62 +130,63 @@ export class AddMerchantComponent {
       }
     );
   }
-  getStates(id: number,selectType?:string) {
-    
+  getStates(id: number, selectType?: string) {
+
     this.commonService.getStates(id).subscribe(
       (response: any) => {
         this.states = response.body.result
       }
     );
   }
-  getCities(id: number,selectType?:string) {
-    
+  getCities(id: number, selectType?: string) {
+
     this.commonService.getStates(id).subscribe(
       (response: any) => {
-        this.cities = response.body.result   
-        console.log(this.cities);
-                     
+        this.cities = response.body.result
       }
     );
   }
-  
-  initialize(elementAuto: any, assingPostCode: any) {
+
+
+  initializeGoogleMap(elementAuto: any, assingPostCode: any, modalName: string) {
     const input = elementAuto.nativeElement;
-    const autocomplete = new google.maps.places.Autocomplete(input);
+    const options = {
+      componentRestrictions: {country: "uk"}
+     };
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
 
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
-      // console.log(place); // Log the place object to see its contents.
+      modalName == 'register_address_line1' ? this.register_address_line1 = input.value : this.trading_address_line1 = input.value;
+
+      console.log(place.geometry['location'].lat());
+      console.log(place.geometry['location'].lng());
+      
+
 
       for (let i = 0; i < place.address_components.length; i++) {
         for (let j = 0; j < place.address_components[i].types.length; j++) {
           if (place.address_components[i].types[j] === "postal_code") {
             const postalCode = place.address_components[i].long_name;
-            if(assingPostCode == 1){
+            if (assingPostCode == 1) {
               this.vendor.register_zipcode = postalCode;
               this.registrationPostCode.nativeElement.focus();
-              console.log(place.geometry['location'].lat());
-              console.log(place.geometry['location'].lng());
-              
-              this.vendor.latitude= place.geometry['location'].lat(),
-              this.vendor.longitude = place.geometry['location'].lng()
+
+              this.vendor.latitude = place.geometry['location'].lat(),
+                this.vendor.longitude = place.geometry['location'].lng()
+                this.vendor.latitude_register = this.vendor.latitude
+                this.vendor.longitude_register = this.vendor.longitude
             }
-            if(assingPostCode == 2){
+            if (assingPostCode == 2) {
               this.vendor.trading_zipcode = postalCode;
               this.tradingPostCode.nativeElement.focus();
-              // this.vendor.latitude= place.geometry['location'].lat(),
-              // this.vendor.longitude = place.geometry['location'].lng()
+              this.vendor.latitude_trading= place.geometry['location'].lat(),
+              this.vendor.longitude_trading = place.geometry['location'].lng()
             }
             console.log(assingPostCode);
-                     
           }
         }
       }
-      
-      // If you want to set the latitude and longitude to form inputs (assumed to have 'lat' and 'long' ids).
-      // Uncomment the following lines and make sure you have the respective input fields in your HTML.
-      // document.getElementById('lat').value = place.geometry['location'].lat();
-      // document.getElementById('long').value = place.geometry['location'].lng();
     });
   }
 

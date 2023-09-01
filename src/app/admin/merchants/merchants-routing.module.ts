@@ -13,7 +13,7 @@ import { ProductDetailComponent } from '../../products/product-detail/product-de
 
 
 const routes: Routes = [
-    {
+      {
         path: '',
         redirectTo: 'listing',
         pathMatch: 'full'
@@ -31,21 +31,19 @@ const routes: Routes = [
        component:MerchantUpdateComponent,
       },
       {
-        path: 'products/:id',
+        path: ':id/products',
        component:ProductsComponent,
       },
       {
-        path: 'review-product-mapping/:id',
+        path: 'id:/review-product-mapping',
        component:MerchantProductMappingComponent,
       },
-    //   {
-    //     path: ':id/products',
-    //     component:VendorProductsComponent,
-    //   },
-    //   {
-    //     path: ':id/payouts',
-    //     component:VendorPayoutsComponent,
-    //   },
+  
+      {
+        path:':id/products/:product_id',
+        component: ProductDetailComponent,
+
+      },
       {
         path:':id/review-product-mapping',
         component:MerchantProductMappingComponent,

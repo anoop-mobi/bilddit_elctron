@@ -40,4 +40,35 @@ export class ProductsService {
     const url = api.URL + '/api/import-vendor-products';
     return this.http.post(url, formData, { observe: 'response' });
   }
+
+
+  productMappingAdmin(vendorId:number){
+    const url = api.URL + '/api/review-mapping';
+    const payload = {
+      id:vendorId
+    }
+    return this.http.post(
+      url,
+      payload,
+      { observe: 'response' }
+    )
+  }
+
+  mappingListProducts(vendorId:number, keyword:string){
+    const url = api.URL + '/api/erp-product-list-to-map';
+    const payload = {id:vendorId, keyword:keyword}    
+    return this.http.post(url, payload)
+  }
+
+  requestProductMapMerchant(vendorId:string, price:number, erp_product_id:number, product_id:number){
+    const url = api.URL + '/api/request-to-map';
+    const payload = {
+      id:vendorId, 
+      erp_product_id:erp_product_id, 
+      price:price, 
+      product_id:product_id
+    }
+    
+    return this.http.post(url, payload)
+  }
 }

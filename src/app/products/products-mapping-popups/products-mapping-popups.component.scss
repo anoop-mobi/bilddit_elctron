@@ -261,6 +261,13 @@
                 max-width: 330px;
             }
         }
+        .change-erp-product-price-popup
+          {
+            .modal-content-main.data_filter {
+                flex-direction: column;
+                gap: 15px;
+            }
+         }
         .modal-content{
             padding-inline: 15px;
         }
@@ -281,4 +288,11 @@
             }
         }
     }
+}
+
+
+.product_status{
+    text-align: center;
+    font-size: 16px;
+    opacity: .5;
 }

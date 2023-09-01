@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { Orderdata } from '../../interfaces/order-data';
-
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss']
+  selector: 'app-order-list',
+  templateUrl: './order-list.component.html',
+  styleUrls: ['./order-list.component.scss']
 })
-export class OrdersComponent {
+export class OrderListComponent {
   tabelDataStatus = 'Loading...'
   orderStatus: string[] = ['Accepted', 'Rejected', 'Processing', 'Shipped'];
   merchantsData: string[] = ['Laura L. Burger', 'Manson', 'Patricia Freeman', 'Julie Lee'];

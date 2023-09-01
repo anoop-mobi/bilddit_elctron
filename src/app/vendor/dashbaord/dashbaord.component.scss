@@ -1,0 +1,327 @@
+.vendor-new-orders{
+    &-wrap{
+        border-radius: 14px;
+        border: 3px solid #FFF;
+        background: #fff;
+        box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+        margin-top: 22px;
+        table
+        {
+            box-shadow: none;
+            padding-inline: 30px;
+            padding-bottom: 10px;
+            .order-received-time,
+            .order-product-qty
+                {
+                    text-align: center;
+                }
+            th
+            {
+                color: #333;
+                font-family: Montserrat;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px; 
+                letter-spacing: 0.16px;
+            }
+            td
+            {
+                color: #333;
+                font-family: Montserrat;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0.16px;
+                .order-accept-btn {
+                    border-radius: 30px;
+                    background: #6ECB44;
+                    color: #FFF;
+                    text-align: center;
+                    font-family: Montserrat;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    text-transform: capitalize;
+                    padding: 9px 12px;
+                }
+                .order-reject-btn
+                {
+                    border-radius: 30px;
+                    color: #FFF;
+                    text-align: center;
+                    font-family: Montserrat;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    text-transform: capitalize;
+                    padding: 9px 12px;
+                    background: #C96B6B;
+                }
+                .order-status-btn-wrap {
+                    display: flex;
+                    gap: 8px;
+                    padding-block: 12px;
+                }
+                .order-status-accepted {
+                    color: #6ECB44;
+                    font-family: Montserrat;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 20px;
+                    letter-spacing: 0.14px;
+                }
+                .order-status-rejected {
+                    color: #C96B6B;
+                    font-family: Montserrat;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 20px;
+                    letter-spacing: 0.14px;
+                }
+            }
+            td.new-order-no{
+                color:#6ECB44; 
+            }
+        }
+        .vendor-new-orders-header {
+            color: #333;
+            font-family: Montserrat;
+            font-size: 18px;
+            font-style: normal;
+            text-align: center;
+            font-weight: 600;
+            line-height: 20px;
+            letter-spacing: 0.18px;
+            padding-block: 22px 16px;
+            border-bottom: 1px solid #D2D2D2;
+            margin-inline: -3px;
+            margin-bottom: 5px;
+        }
+       
+    }   
+}
+
+.vendor-order-awaiting{
+    &-wrap {
+        table
+        {
+            box-shadow: none;  
+            padding-inline: 30px;
+            padding-bottom: 10px; 
+            .order-product-qty,
+            .order-accepted-time{
+                text-align: center;
+            }
+            .order-rider-info {
+                padding-block: 7px;
+            }
+            .order-rider-mnumber {
+                color: #333;
+                font-family: Montserrat;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 18px;
+            }
+            .order-rider-Eta {
+                color: #6ECB44;
+                font-family: Montserrat;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 18px;
+            }
+            .order-awaiting-view-detail-btn {
+                border-radius: 60px;
+                border: 0.5px solid #767676;
+                color: #000;
+                text-align: center;
+                font-family: Montserrat;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0.12px;
+                width: 102px;
+            }
+            th{
+                color: #333;
+                font-family: Montserrat;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px
+            }
+            td{
+                color: #333;
+                font-family: Montserrat;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+
+            }
+            .awaiting-order-no{
+                color: #6ECB44;
+            }
+        }
+          border-radius: 14px;
+          border: 3px solid #FFF;
+          background: #fff;
+          box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+          margin-block: 15px;
+          padding-block: 22px;
+    }
+    &-header {
+        color: #333;
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0.18px;
+        border-bottom: 1px solid #D2D2D2;
+        padding-bottom: 16px;
+        margin-inline: -3px;
+    }
+} 
+
+.vendor-previous-order{
+    &-wrap {
+        border-radius: 14px;
+        border: 3px solid #FFF;
+        background: #fff;
+        box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+        margin-bottom: 35px;
+        table
+        {
+
+            box-shadow: none;
+            padding-inline: 30px;
+            padding-bottom: 10px;
+            .order-received-time,
+            .order-product-qty
+                {
+                    text-align: center;
+                }
+            th
+            {
+                color: #333;
+                font-family: Montserrat;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px; 
+                letter-spacing: 0.16px;
+            }
+            td
+            {
+                color: #333;
+                font-family: Montserrat;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0.16px;
+                
+            }
+            .previous-order-no{
+                color: #6ECB44;
+            }
+            
+        }
+    }
+    &-header {
+        color: #333;
+        font-family: Montserrat;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0.18px;
+        padding-block: 22px 16px;
+        text-align: center;
+        border-bottom: 1px solid #D2D2D2;
+        margin-inline: -3px;
+    }
+}
+
+@media screen and (max-width:960px) {
+    
+    .vendor-new-orders{
+        &-wrap{
+            background-color:#F5F4F7;
+            box-shadow: none;
+            border: none;
+            table{
+                padding-inline: 0;
+                td{
+                    margin-inline: -3px
+                }
+            }
+            .vendor-new-orders-header{
+                background: #fff;
+                box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+                border-bottom: 0;
+                padding-block: 15px;
+                border-radius: 14px;
+                border: 3px solid #FFF;
+            }
+        }
+    }
+    .vendor-order-awaiting{
+        &-wrap {
+             background-color:#F5F4F7;
+            box-shadow: none;
+            border: none;
+            table
+            {
+                padding-inline: 0;
+                td{
+                    margin-inline: -3px;
+                    .order-rider-info{
+                        text-align: right;
+                    }
+                }
+            }
+        }
+        &-header {
+            background: #fff;
+            box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+            border-bottom: 0;
+            padding-block: 15px;
+            border-radius: 14px;
+            border: 3px solid #FFF;
+        }
+    }
+    .vendor-previous-order{
+        &-wrap {
+             background-color:#F5F4F7;
+            box-shadow: none;
+            border: none;
+            table
+            {
+                padding-inline: 0;
+                td{
+                    margin-inline: -3px;
+                }
+            }
+        }
+        &-header {
+            background: #fff;
+            box-shadow: 0px 0px 20px 0px rgba(177, 197, 224, 0.10);
+            border-bottom: 0;
+            padding-block: 15px;
+            border-radius: 14px;
+            border: 3px solid #FFF;
+        }
+    }
+
+}

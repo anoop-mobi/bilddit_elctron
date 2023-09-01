@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,8 +6,8 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent {
-  mappingURL:string = ''
+export class ProductsComponent implements OnInit {
+  mappingURL = ''
   path:number | undefined;
 
   constructor(
@@ -18,7 +18,7 @@ export class ProductsComponent {
     this.activatedRoute.paramMap.subscribe((data)=>{
       this.path = Number(data.get('id'));
 
-      this.mappingURL = '../../review-product-mapping/' + this.path
+      this.mappingURL = `../../${this.path}/review-product-mapping`
     });
   }
 

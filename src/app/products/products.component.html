@@ -148,11 +148,14 @@
                 </div>
                 <div class="vendor-products-deatil-wrap">
                     <div class="vendor-products-title">
-                        {{ProductItem?.product_name }}
+                        <a routerLink="./{{ ProductItem?.product_id }}">
+                            {{ProductItem?.product_name }}
+                        </a>
+                       
                     </div>
                     <div class="vendor-products-id">
                         <span class="vendor-products-id-head">Product ID</span>
-                        <span class="vendor-products-id-value"> #{{ProductItem?.product_id }}</span>
+                         <a routerLink="./{{ ProductItem?.product_id }}"><span class="vendor-products-id-value">#{{ProductItem?.product_id }}</span></a>
                     </div>
                     <div class="vendor-products-middle-sub-detail-grp">
                         <div class="sub-detail-updated-date">

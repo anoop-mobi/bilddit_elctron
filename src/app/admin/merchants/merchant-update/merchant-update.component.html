@@ -1,310 +1,311 @@
-
 <div class="customised-form bgwhite">
-   
-    <form #updateVendorForm="ngForm" (ngSubmit)="submitForm(updateVendorForm)">
-        <div class="vendor-update-detail-header">
-            <div class="vendor-name-last-active-wrap">
-                <div class="vendor-name">
-                    <span class="vendor-first-name">
-                        {{vendor.first_name}}
-                    </span>
-                    <span class="vendor-last-name">
-                      {{vendor.last_name}}
-                    </span>            
-                </div>
-                <div class="vendor-last-active">
-                    Last active time: 20 minutes ago
-                </div>
-                <p class="form-status">{{formStatus}}</p>
-            </div>
-            <button type="submit" class="btn btn-primary" >Save</button>
+
+  <form #updateVendorForm="ngForm" (ngSubmit)="submitForm(updateVendorForm)">
+    <div class="vendor-update-detail-header">
+      <div class="vendor-name-last-active-wrap">
+        <div class="vendor-name">
+          <span class="vendor-first-name">
+            {{vendor.first_name}}
+          </span>
+          <span class="vendor-last-name">
+            {{vendor.last_name}}
+          </span>
         </div>
-        <div class="vendor-update-detail-content">
-            <div class="row row row-cols-1 row-cols-md-2">
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Company Name</mat-label>
-                    <input type="text" matInput required name="company_name" [(ngModel)]="vendor.company_name" />
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Company Trading Name</mat-label>
-                    <input type="text" matInput required name="company_trading_name"
-                      [(ngModel)]="vendor.company_trading_name" />
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Company Number</mat-label>
-                    <input type="text" matInput required name="company_number" [(ngModel)]="vendor.company_number" />
-                    
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Vat Number</mat-label>
-                    <input type="text" matInput required name="vat_number" [(ngModel)]="vendor.vat_number">
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>First Name</mat-label>
-                    <input type="text" matInput required name="first_name" [(ngModel)]="vendor.first_name">
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Last Name</mat-label>
-                    <input type="text" matInput required name="last_name" [(ngModel)]="vendor.last_name">
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Email</mat-label>
-                    <input type="email" matInput required name="email" [(ngModel)]="vendor.email">
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Phone</mat-label>
-                    <input type="tel" matInput required name="mobile" [(ngModel)]="vendor.mobile">
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Secondary Email</mat-label>
-                    <input type="email" matInput required name="secondary_email" [(ngModel)]="vendor.secondary_email">
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Secondary Phone</mat-label>
-                    <input type="tel" matInput required name="secondary_phone" [(ngModel)]="vendor.secondary_phone">
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Landline Number</mat-label>
-                    <input type="tel" matInput required name="landline_number" [(ngModel)]="vendor.landline_number">
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Status</mat-label>
-                    <mat-select required name="status" [(ngModel)]="vendor.status">
-                      <mat-option *ngFor="let vendor of vendorStatus" [value]="vendor.id">{{ vendor.label }}</mat-option>
-                        <!-- <mat-option value="0">none</mat-option> -->
-                        <!-- <mat-option [value]="item" *ngFor="let item of vendorStatus; index as i">{{item}}</mat-option> -->
-                    </mat-select>
-                  </mat-form-field>
-                  
-                </div>
-              </div>
-              <div class="row">
-                <div class="col col-12">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Email Notification</mat-label>
-                    <mat-chip-grid #chipGrid aria-label="Enter Emails">
-                      <mat-chip-row *ngFor="let email of EmailList" (removed)="remove(email)" [editable]="true"
-                        (edited)="edit(email, $event)" [aria-description]="'press enter to edit ' + email.email">
-                        {{email.email}}
-                        <button matChipRemove [attr.aria-label]="'remove ' + email.email">x</button>
-                      </mat-chip-row>
-                      <input placeholder="New email... (Separate using Commas/Enter)" [matChipInputFor]="chipGrid"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                        (matChipInputTokenEnd)="add($event)" [(ngModel)]="vendor.newEmail" name="newEmail" />
-                    </mat-chip-grid>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="separator-row">
-                <h4 class="customised-form-heading">Company Registration Address</h4>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Street Address</mat-label>
-                    <input #registrationStreetAddress type="text" matInput required name="register_address_line1"
-                      [(ngModel)]="vendor.register_address_line1">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row row-cols-md-3">
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Town/City</mat-label>
-                    <mat-select required name="register_city_id" [(ngModel)]="vendor.register_city_id">
-                      <mat-option [value]="0">None</mat-option>
-                      <mat-option *ngFor="let city of cities" [value]="city.id">{{city.city_name}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col">
-                  <mat-form-field appearance="fill">
-                    <mat-label>County</mat-label>
-                    <mat-select #register_state_id required name="register_state_id" [(ngModel)]="vendor.register_state_id" (valueChange)="getCities(register_state_id.value)">
-                      <mat-option *ngFor="let state of states" [value]="state.id">{{state.name}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col">
-      
-                  <mat-form-field appearance="fill">
-                    <mat-label>Post Code</mat-label>
-                    <input #registrationPostCode type="text" matInput required name="register_zipcode"
-                      [(ngModel)]="vendor.register_zipcode">
-                  </mat-form-field>
-                </div>
-              </div>
-      
-              <div class="separator-row">
-                <h4 class="customised-form-heading">Company Trading Address</h4>
-                <div class="same_address_check">
-                  <mat-checkbox (change)="sameAddress($event.checked)" name="sameAddress"
-                    [(ngModel)]="vendor.sameAddress">Same as Registration Address</mat-checkbox>
-                </div>
-              </div>
-      
-              <div class="trading_addr_wrap" *ngIf="sameAddressCheck">
-                <div class="row">
-                  <div class="col">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Street Address</mat-label>
-                      <input #tradingStreetAddress type="text" matInput required name="trading_address_line1"
-                        [(ngModel)]="vendor.trading_address_line1">
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row row-cols-md-3">
-                  <div class="col">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Town/City</mat-label>
-                      <mat-select required name="trading_city_id" [(ngModel)]="vendor.trading_city_id">
-                        <mat-option [value]="0">None</mat-option>
-                        <mat-option *ngFor="let city of cities" [value]="city.id">{{city.city_name}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="col">
-                    <mat-form-field appearance="fill">
-                      <mat-label>County</mat-label>
-                      <mat-select #trading_state_id required name="trading_state_id" [(ngModel)]="vendor.trading_state_id" (valueChange)="getCities(trading_state_id.value)">
-                        <mat-option *ngFor="let state of states" [value]="state.id">{{state.name}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="col">
-      
-                    <mat-form-field appearance="fill">
-                      <mat-label>Post Code</mat-label>
-                      <input #tradingPostCode type="text" matInput required name="trading_zipcode"
-                        [(ngModel)]="vendor.trading_zipcode">
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-            <!-- operating hours -->
-            <div class="operating-hours-table">
-                <diV class="operating-hours-heading">
-                    Operating Hours 
-                    <p>(24-Hour Time Format)</p>
-                </diV>
-                
-                  
-                
-                
-                <div class="operating-hours-contet-row"  [ngClass]="{'activeItem': hours.status == true}" *ngFor="let hours of vendor.vendor_store_time">
-                    <div class="operating-hours-checkbox">
-                        <mat-checkbox #{{hours.id}} 
-                        (click)="$event.stopPropagation()"
-                        (change)="operatingHoursItem(hours, $event)"
-                        [(ngModel)]="hours.status"
-                        [name]="'operatingHoursCheckbox' + hours.id"
-                        >
-                        <div class="operating-hours-day">
-                          {{ hours.day }}
-                        </div>
-                        </mat-checkbox>
-                    </div>
-                    
-                    <div class="operating-input-grp">
-                        <div  class="operating-hours-opening-input">
-                          <ngx-timepicker-field [format]="24" [defaultTime]="hours.open_time" (timeChanged)="getOperatingTime($event, hours.id, 'open')" [toggleIcon]="icon"></ngx-timepicker-field>
-                          <ng-template #icon>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                            </svg>
-                        </ng-template>
-                        </div>
-                        <div class="operating-hours-svg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="2" viewBox="0 0 18 2" fill="none">
-                                <path d="M0.5 1H17.5" stroke="#333333"/>
-                            </svg>
-                        </div>
-                        <div  class="operating-hours-closing-input">
-                          <ngx-timepicker-field [format]="24" [defaultTime]="hours.close_time" #picker (timeChanged)="getOperatingTime($event, hours.id, 'close')" [toggleIcon]="icon"></ngx-timepicker-field>
-                        </div>
-
-                    </div>
-                    
-                </div>
-
-            </div>
-            <!-- operating hours -->
-
-            <!-- add holiday -->
-           <div class="vendor-update-detail-add-holiday-wrap">
-                <div class="vendor-update-detail-add-holiday-header">
-                    Upcoming Holidays
-                </div>
-                <div  class="vendor-update-detail-add-holiday-content" >
-                    <div class="vendor-update-detail-add-holiday-inputs" [formGroup]="range" >
-                        <mat-form-field appearance="fill">
-                            <mat-label>Enter a date range</mat-label>
-                            <mat-date-range-input   [rangePicker]="picker">
-                                <input matStartDate formControlName="start" [(ngModel)]="vendor.start_date" placeholder="Start date">
-                                <input matEndDate formControlName="end"[(ngModel)]="vendor.end_date" placeholder="End date" >
-                            </mat-date-range-input>
-                            <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-date-range-picker #picker></mat-date-range-picker>
-                    
-                            <mat-error *ngIf="range.controls.start.hasError('matstart_dateInvalid')">Invalid start date</mat-error>
-                            <mat-error *ngIf="range.controls.end.hasError('matend_dateInvalid')">Invalid end date</mat-error>
-                        </mat-form-field>
-        
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Holiday Name</mat-label>
-                            <input matInput  formControlName="description"  placeholder="Holiday Name" [(ngModel)] ="vendor.description"  name="description">
-                        </mat-form-field>
-                    </div>
-                    <div class="vendor-update-detail-add-holiday-button">
-                        <button type="button" (click)="addToHolidayList(vendor.start_date,vendor.end_date,vendor.description )">
-                            + Add Holidays
-                        </button>
-                    </div>
-                </div> 
-                <div class="vendor-holiday-list" *ngIf="holidaylist.length > 0">
-                    <div class="vendor-holiday-list-head">
-                        
-                    </div>
-                    <div class="vendor-holiday-item" *ngFor="let holiday of holidaylist" #iholdiay>
-                        <div>
-                            {{ holiday.start_date | date : "dd.MM.y" }} - {{ holiday.end_date | date : "dd.MM.y"}}
-                        </div>
-                        <div>
-                            {{ holiday.description}}
-                        </div>
-                        <button (click)="deletedata(holidaylist.indexOf(holiday))"><img src="assets/images/close-icon.svg" ></button>
-                    </div> 
-                </div>              
-           </div>
-             <!-- add holiday -->  
-           
+        <div class="vendor-last-active">
+          Last active time: 20 minutes ago
         </div>
-    </form>
+        <p class="form-status">{{formStatus}}</p>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+    <div class="vendor-update-detail-content">
+      <div class="row row row-cols-1 row-cols-md-2">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Company Name</mat-label>
+            <input type="text" matInput required name="company_name" [(ngModel)]="vendor.company_name" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Company Trading Name</mat-label>
+            <input type="text" matInput required name="company_trading_name"
+              [(ngModel)]="vendor.company_trading_name" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Company Number</mat-label>
+            <input type="text" matInput required name="company_number" [(ngModel)]="vendor.company_number" />
+
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Vat Number</mat-label>
+            <input type="text" matInput required name="vat_number" [(ngModel)]="vendor.vat_number">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput required name="first_name" [(ngModel)]="vendor.first_name">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput required name="last_name" [(ngModel)]="vendor.last_name">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput required name="email" [(ngModel)]="vendor.email">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input type="tel" matInput required name="mobile" [(ngModel)]="vendor.mobile">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Secondary Email</mat-label>
+            <input type="email" matInput required name="secondary_email" [(ngModel)]="vendor.secondary_email">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Secondary Phone</mat-label>
+            <input type="tel" matInput required name="secondary_phone" [(ngModel)]="vendor.secondary_phone">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Landline Number</mat-label>
+            <input type="tel" matInput required name="landline_number" [(ngModel)]="vendor.landline_number">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select required name="status" [(ngModel)]="vendor.status">
+              <mat-option *ngFor="let vendor of vendorStatus" [value]="vendor.id">{{ vendor.label }}</mat-option>
+              <!-- <mat-option value="0">none</mat-option> -->
+              <!-- <mat-option [value]="item" *ngFor="let item of vendorStatus; index as i">{{item}}</mat-option> -->
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-12">
+          <mat-form-field appearance="fill">
+            <mat-label>Email Notification</mat-label>
+            <mat-chip-grid #chipGrid aria-label="Enter Emails">
+              <mat-chip-row *ngFor="let email of EmailList" (removed)="remove(email)" [editable]="true"
+                (edited)="edit(email, $event)" [aria-description]="'press enter to edit ' + email.email">
+                {{email.email}}
+                <button matChipRemove [attr.aria-label]="'remove ' + email.email">x</button>
+              </mat-chip-row>
+              <input placeholder="New email... (Separate using Commas/Enter)" [matChipInputFor]="chipGrid"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" [(ngModel)]="vendor.newEmail" name="newEmail" />
+            </mat-chip-grid>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="separator-row">
+        <h4 class="customised-form-heading">Company Registration Address</h4>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Street Address</mat-label>
+            <input #registrationStreetAddress type="text" matInput required name="register_address_line1"
+              [(ngModel)]="vendor.register_address_line1">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row row-cols-md-3">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Town/City</mat-label>
+            <mat-select required name="register_city_id" [(ngModel)]="vendor.register_city_id">
+              <mat-option [value]="0">None</mat-option>
+              <mat-option *ngFor="let city of cities" [value]="city.id">{{city.city_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>County</mat-label>
+            <mat-select #register_state_id required name="register_state_id" [(ngModel)]="vendor.register_state_id"
+              (valueChange)="getCities(register_state_id.value)">
+              <mat-option *ngFor="let state of states" [value]="state.id">{{state.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+
+          <mat-form-field appearance="fill">
+            <mat-label>Post Code</mat-label>
+            <input #registrationPostCode type="text" matInput required name="register_zipcode"
+              [(ngModel)]="vendor.register_zipcode">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="separator-row">
+        <h4 class="customised-form-heading">Company Trading Address</h4>
+        <div class="same_address_check">
+          <mat-checkbox (change)="sameAddress($event.checked)" name="sameAddress" [(ngModel)]="vendor.sameAddress">Same
+            as Registration Address</mat-checkbox>
+        </div>
+      </div>
+
+      <div class="trading_addr_wrap" *ngIf="sameAddressCheck">
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>Street Address</mat-label>
+              <input #tradingStreetAddress type="text" matInput required name="trading_address_line1"
+                [(ngModel)]="vendor.trading_address_line1">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row row-cols-md-3">
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>Town/City</mat-label>
+              <mat-select required name="trading_city_id" [(ngModel)]="vendor.trading_city_id">
+                <mat-option [value]="0">None</mat-option>
+                <mat-option *ngFor="let city of cities" [value]="city.id">{{city.city_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>County</mat-label>
+              <mat-select #trading_state_id required name="trading_state_id" [(ngModel)]="vendor.trading_state_id"
+                (valueChange)="getCities(trading_state_id.value)">
+                <mat-option *ngFor="let state of states" [value]="state.id">{{state.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Post Code</mat-label>
+              <input #tradingPostCode type="text" matInput required name="trading_zipcode"
+                [(ngModel)]="vendor.trading_zipcode">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!-- operating hours -->
+      <div class="operating-hours-table">
+        <diV class="operating-hours-heading">
+          Operating Hours
+          <p>(24-Hour Time Format)</p>
+        </diV>
+
+
+
+
+        <div class="operating-hours-contet-row" [ngClass]="{'activeItem': hours.status == true}"
+          *ngFor="let hours of vendor.vendor_store_time">
+          <div class="operating-hours-checkbox">
+            <mat-checkbox #{{hours.id}} (click)="$event.stopPropagation()" (change)="operatingHoursItem(hours, $event)"
+              [(ngModel)]="hours.status" [name]="'operatingHoursCheckbox' + hours.id">
+              <div class="operating-hours-day">
+                {{ hours.day }}
+              </div>
+            </mat-checkbox>
+          </div>
+
+          <div class="operating-input-grp">
+            <div class="operating-hours-opening-input">
+              <ngx-timepicker-field [format]="24" [defaultTime]="hours.open_time"
+                (timeChanged)="getOperatingTime($event, hours.id, 'open')" [toggleIcon]="icon"></ngx-timepicker-field>
+              <ng-template #icon>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock"
+                  viewBox="0 0 16 16">
+                  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                </svg>
+              </ng-template>
+            </div>
+            <div class="operating-hours-svg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="2" viewBox="0 0 18 2" fill="none">
+                <path d="M0.5 1H17.5" stroke="#333333" />
+              </svg>
+            </div>
+            <div class="operating-hours-closing-input">
+              <ngx-timepicker-field [format]="24" [defaultTime]="hours.close_time" #picker
+                (timeChanged)="getOperatingTime($event, hours.id, 'close')" [toggleIcon]="icon"></ngx-timepicker-field>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- operating hours -->
+
+      <!-- add holiday -->
+      <div class="vendor-update-detail-add-holiday-wrap">
+        <div class="vendor-update-detail-add-holiday-header">
+          Upcoming Holidays
+        </div>
+        <div class="vendor-update-detail-add-holiday-content">
+          <div class="vendor-update-detail-add-holiday-inputs" [formGroup]="range">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate formControlName="start" [(ngModel)]="vendor.start_date" placeholder="Start date">
+                <input matEndDate formControlName="end" [(ngModel)]="vendor.end_date" placeholder="End date">
+              </mat-date-range-input>
+              <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+
+              <mat-error *ngIf="range.controls.start.hasError('matstart_dateInvalid')">Invalid start date</mat-error>
+              <mat-error *ngIf="range.controls.end.hasError('matend_dateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Holiday Name</mat-label>
+              <input matInput formControlName="description" placeholder="Holiday Name" [(ngModel)]="vendor.description"
+                name="description">
+            </mat-form-field>
+          </div>
+          <div class="vendor-update-detail-add-holiday-button">
+            <button type="button" (click)="addToHolidayList(vendor.start_date,vendor.end_date,vendor.description )">
+              + Add Holidays
+            </button>
+          </div>
+        </div>
+        <div class="vendor-holiday-list" *ngIf="holidaylist.length > 0">
+          <div class="vendor-holiday-list-head">
+
+          </div>
+          <div class="vendor-holiday-item" *ngFor="let holiday of holidaylist" #iholdiay>
+            <div>
+              {{ holiday.start_date | date : "dd.MM.y" }} - {{ holiday.end_date | date : "dd.MM.y"}}
+            </div>
+            <div>
+              {{ holiday.description}}
+            </div>
+            <button (click)="deletedata(holidaylist.indexOf(holiday))"><img src="assets/images/close-icon.svg"></button>
+          </div>
+        </div>
+      </div>
+      <!-- add holiday -->
+
+    </div>
+  </form>
 
 </div>
-

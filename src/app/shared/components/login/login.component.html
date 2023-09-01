@@ -18,7 +18,7 @@
                     </i>
                 </mat-form-field>
                 <p class="forgot-password text-danger" *ngIf="loginError">Please Enter Email &amp; Password!</p>
-                <p class="small_info">{{logginMSG}}</p>
+                <p class="small_info" [ngClass]="{loading:loadingClass}">{{logginMSG}}</p>
                 <button type="submit" class="btn btn-primary" mat-button color="primary" (click)="userLogin(userEmailLogin.value, passwordLogin.value)">Login</button>
                 <a routerLink="/forgot-password" class="forgot-password">Forget Password?</a>
             </div>

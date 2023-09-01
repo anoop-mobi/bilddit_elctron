@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, effect, signal } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {api} from '../../../../environments/api_url';
@@ -11,13 +11,22 @@ export class AuthService {
 
   private role_id: string = '';
   private token: string = '';
-  isLoggedIn: boolean = false;
+  userLoginStatus = signal(false);
+  
+
   isUserLogged = new BehaviorSubject<boolean>(false);
+  isVendorUserLogged = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,
     private route: Router,
-  ) { }
+  ) { 
+    if(localStorage.getItem('token')){
+      this.userLoginStatus.set(true)
+    } else {
+      this.userLoginStatus.set(false)
+    }
+  }
 
   userLogin(userEmail: string, userPassword: string): Observable<any> {
     const url = api.URL + '/api/login';
@@ -44,9 +53,8 @@ export class AuthService {
 
         // console.log( this.fileService.triggerFunction("dealerCode", "path", "filename"));
 
-        this.isUserLogged.next(true);
-        console.log(this.isUserLogged);
-        this.isLoggedIn = true;
+        
+        this.userLoginStatus.set(true)
         this.token = apiResponse.result.token;
         const fullName = apiResponse.result.full_name;
         const roleId = apiResponse.result.role_id;
@@ -59,12 +67,15 @@ export class AuthService {
         localStorage.setItem('userData', JSON.stringify(apiResponse));
         
         if (roleId === 2) {
-          this.route.navigate(['vendor-dashboard']);
+          this.route.navigate(['vendor']);
+          this.isVendorUserLogged.next(true)
         } else if (roleId === 1) {
           // const navigationExtras: NavigationExtras = {
           //   queryParams: { role: roleId, token: this.token }
           // };
+
           this.route.navigate(['admin'] /*, navigationExtras */);
+          this.isUserLogged.next(true);
         } else {
 
         }
@@ -79,14 +90,7 @@ export class AuthService {
     return dataPayload;
   }
 
-  checkUser() {
-    let data = "true"
-    if (this.isLoggedIn) {
-      return data
-    } else {
-      return false
-    }
-  }
+  
 
 
   resetPassword(email: string) {
@@ -114,9 +118,10 @@ export class AuthService {
       { observe: 'response' }
     )
     dataPayload.subscribe((result) => {
-      console.log(result);
+      console.log(result);      
     })
     localStorage.clear();
+    this.userLoginStatus.set(false);
     this.route.navigate(['login'])
     return dataPayload
   }

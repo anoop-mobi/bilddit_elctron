@@ -53,6 +53,9 @@
   line-height: 16px;
 }
 
+.mat-mdc-table{
+  background: inherit !important;
+}
 .mdc-data-table__header-cell {
   font-family: Montserrat;
   font-size: 14px;
@@ -93,6 +96,20 @@ table tr .mdc-data-table__cell:last-child,
   padding: 4px 12px;
   line-height: normal;
 }
+.product-detail{
+  &-body-wrap{
+    .mat-expansion-indicator::after{
+      margin-inline: 3px;
+    }
+    .mat-expansion-panel-body{
+      padding-left: 0;
+    }
+  }
+
+}
+.mat-typography p{
+  margin: 0;
+}
 
 @media screen and (max-width: 960px) {
 
@@ -109,7 +126,11 @@ table tr .mdc-data-table__cell:last-child,
   .mdc-data-table__header-cell:last-child {
     padding-right: 16px;
   }
-
+  table tr .mdc-data-table__cell:last-child{
+    .btn.btn_outline{
+      line-height: 20px;
+    }
+  }
   .mat-mdc-table {
     border: 0;
     vertical-align: middle;
@@ -119,6 +140,7 @@ table tr .mdc-data-table__cell:last-child,
   .mat-mdc-table .mdc-data-table__header-row {
     display: none;
   }
+  
 
   .mat-mdc-table .mdc-data-table__row {
     border-radius: 14px;
@@ -180,10 +202,7 @@ table tr .mdc-data-table__cell:last-child,
   }
 
   .mat-mdc-cell:before {
-    /*
-      * aria-label has no advantage, it won't be read inside a table
-      content: attr(aria-label);
-      */
+ 
     content: attr(data-label);
     float: left;
     font-weight: 500;
@@ -223,4 +242,84 @@ table tr .mdc-data-table__cell:last-child,
       padding-right: 14px;
     }
   }
+  .vendor-new-orders{
+    &-wrap{
+      .mat-mdc-cell[data-label="Action"] {
+        height: 60px;
+        display: flex;
+        align-items: center;
+       }
+      .mdc-data-table__row:last-child .mdc-data-table__cell:last-child{
+        border-bottom: none!important;
+      }
+    }
+  }
+  .vendor-order-awaiting{
+      &-wrap {
+        .mat-mdc-cell[data-label="Rider Info"] {
+          height: 64px;
+          display: flex;
+          align-items: center;
+        }
+        .mdc-data-table__row:last-child .mdc-data-table__cell:last-child{
+          border-bottom: none!important;
+        }
+      }
+     
+  }
+  .order-request-detail-wrap{
+    .mat-mdc-row{
+      display: table-row;
+    }
+    .mdc-data-table__cell{
+      display: table-cell;
+
+    }
+    .mat-mdc-table .mat-mdc-header-cell {
+      border: none;
+    border-bottom: 1px solid #ccc;
+      clip: unset;
+      height: auto;
+      margin: 0px;
+      padding: 0 16px 0 16px;
+      position: relative;
+      width: auto;
+    }
+    .mat-mdc-table .mdc-data-table__header-row {
+      display: table-row;
+    }
+    tfoot td {
+      font-size: 12px;
+      line-height: 14px;
+   }
+  }
+
 }
+
+@media screen and (max-width:492px) {
+  .order-request-detail-wrap{
+    .mdc-data-table__cell,
+    .mat-mdc-table .mat-mdc-header-cell {
+      padding: 0 6px 0 6px;
+    }
+    .mdc-data-table__header-cell{
+      font-size: 12px;
+    }
+    .order-no-recieved-wrap{
+      font-size: 14px;
+      line-height: 18px;
+      .order-recieved-time{
+        font-size: 11px;
+      }
+    }
+    tfoot td {
+      font-size: 10px;
+      line-height: 14px;
+    }
+    tfoot .mat-mdc-footer-row{
+      height: 35px;
+    }
+  
+  } 
+}
+

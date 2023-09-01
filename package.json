@@ -55,6 +55,7 @@
     "ngx-infinite-scroll": "16.0.0",
     "ngx-material-timepicker": "13.1.1",
     "rxjs": "7.8.1",
+    "swiper": "10.2.0",
     "tslib": "^2.5.0",
     "zone.js": "~0.13.1"
   },

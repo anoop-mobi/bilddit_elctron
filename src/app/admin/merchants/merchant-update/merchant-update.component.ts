@@ -1,4 +1,4 @@
-import { Component,ElementRef, ViewChild, } from '@angular/core';
+import { Component, ElementRef, ViewChild, } from '@angular/core';
 import { MatChipInputEvent, MatChipEditedEvent } from '@angular/material/chips';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +8,7 @@ import { CommonService } from '../../../core/services/common.service';
 import { MerchantsDetailsService } from '../../../core/services/merchant/merchants-details.service';
 import { ActivatedRoute } from '@angular/router';
 import { AddService } from '../../../core/services/merchant/add.service';
+import { AddressLoaderService } from '../../../core/services/google/address-loader.service';
 declare var google: any;
 
 @Component({
@@ -58,65 +59,84 @@ export class MerchantUpdateComponent {
     end_date: Date,
     description: string
   }[] = [];
-  
-  formatDateDate(inputDate:string) {
+  register_address_line1 = this.vendor.register_address_line1;
+  trading_address_line1 = this.vendor.trading_address_line1;
+
+  formatDateDate(inputDate: string) {
     const date = new Date(inputDate);
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
     const year = date.getFullYear();
     return `${year}:${month}:${day}`;
   }
-    submitForm(form: any) {
-      this.holidaylist.filter((item:any)=>{
-        item.start_date = this.formatDateDate(item.start_date)
-        item.end_date = this.formatDateDate(item.end_date)
-      })
-      let updatePayload = {
-        ...form.value,
-        id: this.path,
-        country_id: this.vendor.country_id ?? 0,
-        register_city_id: this.vendor.register_city_id,
-        trading_city_id: this.vendor.trading_city_id,
-        state_id: this.vendor.state_id,
-        city_id: this.vendor.city_id,
-        address_line1: this.vendor.address_line1,
-        trading_state_id: this.vendor.trading_state_id,
-        register_country_id: this.vendor.register_country_id,
-        trading_country_id: this.vendor.trading_country_id,
-        latitude: this.vendor.latitude,
-        longitude: this.vendor.longitude,
-        vendor_store_time:this.vendor.vendor_store_time,
-        email_notification: [],
-        vendor_holidays:this.holidaylist
-      };
-      this.EmailList.map((item) => {
-        updatePayload.email_notification.push(item.email)
-      });
-      
-      
-      console.log(updatePayload);
-  
-      
-  
-      this.updateService.updateVendor(updatePayload).subscribe((data: any) => {
-        console.log(data);
-        this.formStatus = data.body.message;  
-      });
+  submitForm(form: any) {
+    this.holidaylist.filter((item: any) => {
+      item.start_date = this.formatDateDate(item.start_date)
+      item.end_date = this.formatDateDate(item.end_date)
+    })
 
-      // if (form.valid) {
-  
-        // const allvalue = { ...this.vendor.value, 'weekdays': this.allSelectedData(), 'holidays list': this.holdayList() }
-      //   console.log((allvalue));
-      // }
+    if (!this.register_address_line1 && !this.trading_address_line1) {
+      this.formStatus = 'Please Enter Valid Address. (Select From given list)'
+      return
     }
+
+
+    let updatePayload = {
+      ...form.value,
+      id: this.path,
+      country_id: this.vendor.country_id ?? 0,
+      register_city_id: this.vendor.register_city_id,
+      trading_city_id: this.vendor.trading_city_id,
+      state_id: this.vendor.state_id,
+      city_id: this.vendor.city_id,
+      address_line1: this.vendor.address_line1,
+      trading_state_id: this.vendor.trading_state_id,
+      register_country_id: this.vendor.register_country_id,
+      trading_country_id: this.vendor.trading_country_id,
+      latitude: this.vendor.latitude,
+      longitude: this.vendor.longitude,
+      latitude_register: this.vendor.latitude_register,
+      longitude_register: this.vendor.longitude_register,
+      latitude_trading: this.vendor.latitude_trading,
+      longitude_trading: this.vendor.longitude_trading,
+      vendor_store_time: this.vendor.vendor_store_time,
+      email_notification: [],
+      vendor_holidays: this.holidaylist,
+
+
+    };
+
+    updatePayload.register_address_line1 = this.register_address_line1
+    updatePayload.trading_address_line1 = this.trading_address_line1
+
+    this.EmailList.map((item) => {
+      updatePayload.email_notification.push(item.email)
+    });
+
+
+    console.log(updatePayload);
+
+
+
+    this.updateService.updateVendor(updatePayload).subscribe((data: any) => {
+      console.log(data);
+      this.formStatus = data.body.message;
+    });
+
+    // if (form.valid) {
+
+    // const allvalue = { ...this.vendor.value, 'weekdays': this.allSelectedData(), 'holidays list': this.holdayList() }
+    //   console.log((allvalue));
+    // }
+  }
   operatingHoursItem(hour: { day: string; openingInput: string; closingInput: string; id: number }, id: any) {
-    let getIdItem = this.vendor.vendor_store_time.find((item:any)=>item.id === hour.id )
+    let getIdItem = this.vendor.vendor_store_time.find((item: any) => item.id === hour.id)
     id.checked ? getIdItem.status = 1 : getIdItem.status = 0
   }
   getOperatingTime(time: any, id: number, type: string) {
     time = time + ":00"
-    let getIdItem = this.vendor.vendor_store_time.find((item:any)=>item.id === id)
-    type == 'open' ? getIdItem.open_time = time: getIdItem.close_time = time;
+    let getIdItem = this.vendor.vendor_store_time.find((item: any) => item.id === id)
+    type == 'open' ? getIdItem.open_time = time : getIdItem.close_time = time;
   }
 
 
@@ -127,7 +147,8 @@ export class MerchantUpdateComponent {
     public commonService: CommonService,
     private userData: MerchantsDetailsService,
     private activatedRoute: ActivatedRoute,
-    private updateService: AddService
+    private updateService: AddService,
+    private _AddressLoaderService: AddressLoaderService,
   ) {
     this.emailForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
@@ -153,7 +174,7 @@ export class MerchantUpdateComponent {
     }
 
   }
-  
+
 
   selection = new SelectionModel<{
     day: string; openingInput: string;
@@ -198,7 +219,7 @@ export class MerchantUpdateComponent {
     }
   }
 
- 
+
 
   // ADDED UPDATED FORM
   getCountries() {
@@ -228,14 +249,27 @@ export class MerchantUpdateComponent {
     );
   }
 
-  initialize(elementAuto: any, assingPostCode: any) {
+
+  initializeGoogleMap(elementAuto: any, assingPostCode: any, modalName: string) {
     const input = elementAuto.nativeElement;
-    const autocomplete = new google.maps.places.Autocomplete(input);
+    const options = {
+      componentRestrictions: { country: "uk" }
+    };
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
 
     autocomplete.addListener('place_changed', () => {
+
+      if (modalName == 'register_address_line1') {
+        this.register_address_line1 = '';
+      } else if (modalName === 'trading_address_line1') {
+        this.trading_address_line1 = '';
+      }
+
+
+
       const place = autocomplete.getPlace();
       // console.log(place); // Log the place object to see its contents.
-
+      modalName == 'register_address_line1' ? this.register_address_line1 = input.value : this.trading_address_line1 = input.value;
       for (let i = 0; i < place.address_components.length; i++) {
         for (let j = 0; j < place.address_components[i].types.length; j++) {
           if (place.address_components[i].types[j] === "postal_code") {
@@ -248,12 +282,14 @@ export class MerchantUpdateComponent {
 
               this.vendor.latitude = place.geometry['location'].lat(),
                 this.vendor.longitude = place.geometry['location'].lng()
+              this.vendor.latitude_register = this.vendor.latitude
+              this.vendor.longitude_register = this.vendor.longitude
             }
             if (assingPostCode == 2) {
               this.vendor.trading_zipcode = postalCode;
               this.tradingPostCode.nativeElement.focus();
-              // this.vendor.latitude= place.geometry['location'].lat(),
-              // this.vendor.longitude = place.geometry['location'].lng()
+              this.vendor.latitude_trading = place.geometry['location'].lat(),
+                this.vendor.longitude_trading = place.geometry['location'].lng()
             }
             console.log(assingPostCode);
 
@@ -264,16 +300,21 @@ export class MerchantUpdateComponent {
   }
   getUserDetails(id: number) {
     this.userData.vendorDetail(id).subscribe((data: any) => {
-      this.vendor = data.body.result  
-      this.vendor.email_notification ? this.EmailList = JSON.parse(this.vendor.email_notification).map((item: string) => ({email: item})) : ''
-      if(this.vendor.vendor_store_time){
-        this.vendor.vendor_store_time.filter((item:any)=>{
-          // item.status = false
-          item.open_time ? item.open_time = item.open_time.replace(":00", ''): ''
-          item.close_time ? item.close_time = item.close_time.replace(":00", ''):''
-        })
+      this.vendor = data.body.result
+
+      this.register_address_line1 = this.vendor.register_address_line1;
+      this.trading_address_line1 = this.vendor.trading_address_line1;
+      this.vendor.email_notification ? this.EmailList = JSON.parse(this.vendor.email_notification).map((item: string) => ({ email: item })) : ''
+      if (this.vendor.vendor_store_time) {
+        this.vendor.vendor_store_time = this.vendor.vendor_store_time
+          .filter((item: any) => item.open_time !== null && item.close_time !== null)
+          .map((item: any) => ({
+            ...item,
+            open_time: item.open_time.replace(":00", ''),
+            close_time: item.close_time.replace(":00", '')
+          }));
       }
-      if(this.vendor.vendor_holidays){
+      if (this.vendor.vendor_holidays) {
         this.holidaylist = this.vendor.vendor_holidays
       }
       console.log(this.vendor);
@@ -297,5 +338,14 @@ export class MerchantUpdateComponent {
 
     this.getStatus()
 
+
+    // google map
+    this._AddressLoaderService.loadGoogleMapsScript().then(() => {
+      // register_address_line1, trading_address_line1
+      this.initializeGoogleMap(this.registrationStreetAddress, 1, 'register_address_line1');
+      this.initializeGoogleMap(this.tradingAddress, 2, "trading_address_line1");
+    }).catch((error: any) => {
+      console.error(error);
+    });
   }
 }

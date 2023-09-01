@@ -247,9 +247,31 @@
                 margin-bottom: 15px;
             }
         }
+        &-header{
+            .vendor-last-active{
+                font-size: 9px !important;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 17px
+            }
+        }
     }
 }
 
+@media screen and (max-width:492px) {
+    .vendor-update-detail{
+       
+        &-content{
+           
+            h4.customised-form-heading{
+                margin-bottom: 8px;
+            }
+            .same_address_check {
+                margin-left: -10px;
+            }
+        }
+    }
+}
 
 .vendor-update-detail-content .operating-hours-contet-row.activeItem .operating-input-grp{
     opacity: 1;
