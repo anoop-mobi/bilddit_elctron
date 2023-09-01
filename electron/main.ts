@@ -8,6 +8,61 @@ const appAutoLauncher = new AutoLaunch({
 });
 let win: BrowserWindow | null = null;
 var CloseApp: Boolean = false;
+
+function createMenu() {
+  const template:any = [
+    {
+      label: 'Edit',
+      submenu: [
+        { role: 'undo' },
+        { role: 'redo' },
+        { type: 'separator' },
+        { role: 'cut' },
+        { role: 'copy' },
+        { role: 'paste' },
+        { role: 'delete' },
+        { role: 'selectall' }
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        { role: 'reload' },
+        { role: 'forcereload' },
+        { role: 'toggledevtools' },
+        { type: 'separator' },
+        { role: 'resetzoom' },
+        { role: 'zoomin' },
+        { role: 'zoomout' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }
+      ]
+    },
+    {
+      role: 'window',
+      submenu: [
+        { role: 'minimize' },
+        { role: 'close' }
+      ]
+    },
+    {
+      role: 'help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click() { require('electron').shell.openExternal('https://electronjs.org') }
+        }
+      ]
+    }
+  ];
+  if(template){
+    const menu = Menu.buildFromTemplate(template);
+    Menu.setApplicationMenu(menu);
+  }
+  
+}
+
+
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 function createWindow(): BrowserWindow {
@@ -23,7 +78,7 @@ function createWindow(): BrowserWindow {
       contextIsolation: false,
     },
   });
-  
+
   win.on('close', (event) => {
     if (CloseApp) {
       app.quit();
@@ -77,6 +132,11 @@ try {
     })
     tray.setToolTip('Bilddit Application')
     tray.setContextMenu(contextMenu)
+
+    if (process.platform === 'darwin') {
+      createMenu(); // Create the macOS menu bar
+      app.dock.setIcon(path.join(__dirname, '../dist/assets/icons/favicon-16x16.png')); // Set the application dock icon
+    }
   });
 
   app.on('before-quit', () => {
@@ -89,6 +149,7 @@ try {
       tray.destroy();
       tray = null;
     }
+    app.exit(0);
   });
 
   ipcMain.on('show-notification', (event, args) => {
@@ -119,3 +180,4 @@ try {
 } catch (e) {
   // throw e;
 }
+
