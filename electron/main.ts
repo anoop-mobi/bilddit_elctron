@@ -166,6 +166,8 @@ try {
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
       app.quit();
+    } else {
+      win?.hide()
     }
   });
   app.on('activate', () => {
